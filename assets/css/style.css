@@ -1,0 +1,53 @@
+/*Custom CSS*/
+
+.login input{
+
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	outline: none;
+	background-color: #f1f1f1;
+	width: 65%;
+
+}
+
+.signup input{
+
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	outline: none;
+	background-color: #f1f1f1;
+	width: 65%;
+
+}
+
+.dashboard .card{
+
+	background-color: #f8f9fa;
+
+}
+
+nav{
+
+	background-color: #0181ff;
+
+}
+
+.navbar-toggler:focus{
+
+    box-shadow: none;
+    
+}
+
+.list-group-item{
+
+	padding: 20px;
+
+}
+
+.logout{
+
+	padding-right: 20px;
+
+}
