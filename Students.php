@@ -20,7 +20,7 @@
 		$total_rows = mysqli_num_rows($result);	
 		$total_pages = ceil($total_rows/ 5);
 
-		$page = isset($_POST['page']) ? $_POST['page'] : 1 ;
+		$page = (isset($_GET['page']) && !empty($_GET['page'])) ? $_GET['page'] : 1 ;
 
 		if (isset($_REQUEST['search_text'])) {
 
@@ -59,7 +59,6 @@
 				FROM table_students $where ORDER BY student_id ASC $limit ";
 
 		$result = mysqli_query($connection, $sql);
-
 
 	 ?>
 
@@ -115,7 +114,7 @@
 
 					$.ajax({
 
-						type : 'POST',
+						type : 'GET',
 						url : 'Students.php',
 						data : {
 
@@ -158,8 +157,6 @@
 					</div>  
 
 				</form>
-
-				<div><span id="result"></span></div>
 				
 			</div>
 
@@ -231,18 +228,18 @@
 
 	</body>
 	</html>
-
+		
 	<input type="hidden" id="total_page" value="<?php echo $total_page; ?>">
 
 	<div class="d-flex justify-content-center">
 	
 		<ul class="pagination pagination-lg">
 
-			<!-- <li>
+			<li>
 				
-				<a class="page-link" href="Students.php?page="<?php //echo '' ;?>>Previous</a>
+				<a class="page-link" href="Students.php?page=<?php echo $page-1 ;?>">Previous</a>
 
-			</li> -->
+			</li>
 
 			<?php 
 
@@ -252,11 +249,11 @@
 
 					<li class="page-item">
 
-						<button class="page-link <?php echo $page == $i ? 'active' : ''; ?>" value="<?php echo $i; ?>">
+						<a class="page-link <?php echo $page == $i ? 'active' : ''; ?>" href="Students.php?page=<?php echo $i ;?>">
 
 								<?php echo $i; ?>
 
-						</button>
+						</a>
 
 					</li>
 
@@ -266,11 +263,11 @@
 
 			 ?>
 
-			<!-- <li>
+			<li>
 			 	
-			 	<a class="page-link" href="Students.php?page="<?php //echo '' ;?>>Next</a>
+			 	<a class="page-link" href="Students.php?page=<?php echo $page+1 ;?>">Next</a>
 
-			</li> -->			
+			</li>			
 			
 		</ul>
 		

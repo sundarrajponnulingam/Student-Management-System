@@ -10,6 +10,17 @@
 
 	if (!empty($_SESSION)) {
 
+	$sql = " SELECT count(student_id) as student_count, 
+			(SELECT count(student_id) FROM table_students WHERE student_fees_status = 1) 
+			as paid_students, 
+			(SELECT count(student_id) FROM table_students WHERE student_fees_status = 0) 
+			as not_paid_students 
+			FROM table_students";
+
+	$result = mysqli_query($connection, $sql);
+
+	$data = mysqli_fetch_assoc($result);
+
  ?>
 
 	<!DOCTYPE html>
@@ -25,9 +36,9 @@
 	 
 			<div class="row">
 				
-				<div class="col-md-4">
+				<div class="col-md-6">
 
-						<a href="" class="text-decoration-none">
+						<a href="Students.php                                                                    " class="text-decoration-none">
 
 							<div class="card h-100">
 							
@@ -37,7 +48,7 @@
 									
 									<h5 class="card-title">Students</h5>
 
-									<p class="card-text mt-3">Total Number of Students</p>
+									<p class="card-text mt-3">Total Number of Students <strong> <?php echo $data['student_count']; ?> </strong></p>
 									
 								</div>
 
@@ -47,9 +58,9 @@
 
 				</div>
 
-				<div class="col-md-4">
+				<div class="col-md-6">
 
-					<a href="" class="text-decoration-none">
+					<a href="Fees.php" class="text-decoration-none">
 						
 						<div class="card h-100">
 
@@ -59,9 +70,9 @@
 								
 								<h5 class="card-title">Fees</h5>
 
-								<p class="card-text mt-3">Number of Students Paid </p>
+								<p class="card-text mt-3">Number of Students Paid <strong> <?php echo $data['paid_students']; ?> </strong></p>
 
-								<p class="card-text">Number of Students Not Paid</p>
+								<p class="card-text">Number of Students Not Paid <strong> <?php echo $data['not_paid_students']; ?> </strong></p>
 
 							</div>
 
@@ -70,6 +81,26 @@
 					</a>	
 
 				</div>
+
+			</div>
+
+			<div class="row mt-5">
+				
+				<form method="POST">
+					
+					<div class="d-flex justify-content-between">
+					
+						<input type="text" class="form-control" name="search_text" id="search_text" placeholder="Enter Your Search Text Here">
+
+						<button type="submit" class="btn btn-light" id="search">
+
+							<img src="./assets/icons/Search.svg" width="30" height="30">
+							
+						</button>
+
+					</div>  
+
+				</form>
 
 			</div>		
 
