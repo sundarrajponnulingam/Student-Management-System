@@ -20,16 +20,7 @@
 		$total_rows = mysqli_num_rows($result);	
 		$total_pages = ceil($total_rows / 5);
 
-		if (isset($_GET["page"]) && !empty($_GET['page'])) {
-			
-			$page = $_GET["page"];
-
-		}
-		else{
-
-			$page = 1;
-
-		}		
+		$page = (isset($_GET['page']) && !empty($_GET['page'])) ? $_GET['page'] : 1 ;	
 
 		if (isset($_REQUEST['search_text'])) {
 
@@ -220,7 +211,7 @@
 
 	 		<li>
 	 			
-	 			<a class="page-link" href="Fees.php?page="<?php echo '' ;?>>Previous</a>
+	 			<a class="page-link" href="Fees.php?page=<?php echo $page-1 ;?>">Previous</a>
 
 	 		</li>
 
@@ -230,7 +221,7 @@
 
 	 			?>
 	 				
-	 				<li class="page-item">
+	 				<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
 
 	 					<a class="page-link" href="Fees.php?page=<?php echo $i; ?>">
 
@@ -248,7 +239,7 @@
 
 	 		<li>
 	 		 	
-	 		 	<a class="page-link" href="Fees.php?page="<?php echo '' ;?>>Next</a>
+	 		 	<a class="page-link" href="Fees.php?page=<?php echo $page+1 ;?>">Next</a>
 
 	 		</li>
 	 		

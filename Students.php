@@ -232,44 +232,48 @@
 	<input type="hidden" id="total_page" value="<?php echo $total_page; ?>">
 
 	<div class="d-flex justify-content-center">
-	
-		<ul class="pagination pagination-lg">
 
-			<li>
-				
-				<a class="page-link" href="Students.php?page=<?php echo $page-1 ;?>">Previous</a>
-
-			</li>
-
-			<?php 
-
-				for ($i=1; $i <= $total_pages; $i++) { 
-
-				?>
-
-					<li class="page-item">
-
-						<a class="page-link <?php echo $page == $i ? 'active' : ''; ?>" href="Students.php?page=<?php echo $i ;?>">
-
-								<?php echo $i; ?>
-
-						</a>
-
-					</li>
-
-			<?php
-					
-				}
-
-			 ?>
-
-			<li>
-			 	
-			 	<a class="page-link" href="Students.php?page=<?php echo $page+1 ;?>">Next</a>
-
-			</li>			
+		<form method="POST">
 			
-		</ul>
+			<ul class="pagination pagination-lg">
+
+				<li>
+					
+					<a class="page-link" type="submit" href="Students.php?page=<?php echo $page-1 ;?>">Previous</a>
+
+				</li>
+
+				<?php 
+
+					for ($i=1; $i <= $total_pages; $i++) { 
+
+					?>                                                                                                  
+
+						<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
+
+							<a class="page-link" href="Students.php?page=<?php echo $i ;?>" type="submit">
+
+									<?php echo $i; ?>
+
+							</a>
+
+						</li>
+
+				<?php
+						
+					}
+
+				 ?>
+
+				<li>
+				 	
+				 	<a class="page-link" type="submit" href="Students.php?page=<?php echo $page+1 ;?>">Next</a>
+
+				</li>			
+				
+			</ul>
+
+		</form>
 		
 	</div>
 

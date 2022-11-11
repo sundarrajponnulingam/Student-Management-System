@@ -30,6 +30,39 @@
 	 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	 	<title>Dashboard</title>
 	</head>
+
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+
+			$("#search").click(function(){
+
+				var search_text = $("#search_text").val();
+
+				$.ajax({
+
+					type: 'POST',
+					url: 'Dashboard.php',
+					data: {
+
+						search_text : search_text
+
+					},
+					success: function(response){
+
+					},
+					failure: function(response){
+						
+					}
+
+				});
+
+			});
+
+		});
+
+	</script>
+
 	<body>
 
 	 	<div class="container mt-5 dashboard">
