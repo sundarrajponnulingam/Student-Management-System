@@ -209,13 +209,19 @@
 	 
 	 	<ul class="pagination pagination-lg">
 
-	 		<li>
-	 			
-	 			<a class="page-link" href="Fees.php?page=<?php echo $page-1 ;?>">Previous</a>
-
-	 		</li>
-
 	 		<?php 
+
+	 			if ($page > 1 ) { ?>
+	 					
+	 				<li>
+	 				 	
+	 				 	<a class="page-link" href="Fees.php?page=<?php echo $page-1 ;?>">Previous</a>
+
+	 				</li>		
+
+	 			<?php  
+
+	 			}
 
 	 			for ($i=1; $i <= $total_pages; $i++) { 
 
@@ -235,13 +241,19 @@
 	 				
 	 			}
 
-	 		 ?>
+	 			if ($page < $total_pages) { ?>
+						
+					<li>
+					 	
+					 	<a class="page-link" href="Fees.php?page=<?php echo $page+1 ;?>">Next</a>
 
-	 		<li>
-	 		 	
-	 		 	<a class="page-link" href="Fees.php?page=<?php echo $page+1 ;?>">Next</a>
+					</li>		
 
-	 		</li>
+				<?php  
+
+					}
+
+				?>	
 	 		
 	 	</ul>
 	 	

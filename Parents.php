@@ -178,13 +178,19 @@
 	 
 	 	<ul class="pagination pagination-lg">
 
-	 		<li>
-	 			
-	 			<a class="page-link" href="Parents.php?page=<?php echo $page-1 ;?>">Previous</a>
+	 		<?php
 
-	 		</li>
+	 			if ($page > 1 ) { ?>
+	 					
+	 				<li>
+	 				 	
+	 				 	<a class="page-link" href="Parents.php?page=<?php echo $page-1 ;?>">Previous</a>
 
-	 		<?php 
+	 				</li>		
+
+	 			<?php  
+
+	 			} 
 
 	 			for ($i=1; $i <= $total_pages; $i++) { 
 
@@ -204,13 +210,19 @@
 	 				
 	 			}
 
-	 		 ?>
-	 		
-	 		<li>
-	 		 	
-	 		 	<a class="page-link" href="Parents.php?page=<?php echo $page+1 ;?>">Next</a>
+	 			if ($page < $total_pages) { ?>
+						
+					<li>
+					 	
+					 	<a class="page-link" href="Parents.php?page=<?php echo $page+1 ;?>">Next</a>
 
-	 		</li>
+					</li>		
+
+				<?php  
+
+					}
+
+				?>
 	 		
 	 	</ul>
 	 	

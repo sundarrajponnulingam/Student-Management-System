@@ -20,7 +20,7 @@
 		$total_rows = mysqli_num_rows($result);	
 		$total_pages = ceil($total_rows/ 5);
 
-		$page = (isset($_GET['page']) && !empty($_GET['page'])) ? $_GET['page'] : 1 ;
+		$page = (isset($_GET['page']) && !empty($_GET['page'])) ? $_GET['page'] : 1 ;	
 
 		if (isset($_REQUEST['search_text'])) {
 
@@ -54,9 +54,9 @@
 			$total_pages = ceil($total_rows / 5);
 
 		}
-
+		
 		$sql = " SELECT student_id, student_name, student_class, student_section
-				FROM table_students $where ORDER BY student_id ASC $limit ";
+			FROM table_students $where ORDER BY student_id ASC $limit ";
 
 		$result = mysqli_query($connection, $sql);
 
@@ -114,7 +114,7 @@
 
 					$.ajax({
 
-						type : 'GET',
+						type : 'POST',
 						url : 'Students.php',
 						data : {
 
@@ -237,18 +237,23 @@
 			
 			<ul class="pagination pagination-lg">
 
-				<li>
-					
-					<a class="page-link" type="submit" href="Students.php?page=<?php echo $page-1 ;?>">Previous</a>
+				<?php
 
-				</li>
+					if ($page > 1 ) { ?>
+							
+						<li>
+						 	
+						 	<a class="page-link" href="Students.php?page=<?php echo $page-1 ;?>">Previous</a>
 
-				<?php 
+						</li>		
+
+					<?php  
+
+						}
 
 					for ($i=1; $i <= $total_pages; $i++) { 
 
 					?>                                                                                                  
-
 						<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
 
 							<a class="page-link" href="Students.php?page=<?php echo $i ;?>" type="submit">
@@ -263,13 +268,19 @@
 						
 					}
 
-				 ?>
+					if ($page < $total_pages) { ?>
+							
+						<li>
+						 	
+						 	<a class="page-link" href="Students.php?page=<?php echo $page+1 ;?>">Next</a>
 
-				<li>
-				 	
-				 	<a class="page-link" type="submit" href="Students.php?page=<?php echo $page+1 ;?>">Next</a>
+						</li>		
 
-				</li>			
+					<?php  
+
+						}
+
+					?>		
 				
 			</ul>
 
