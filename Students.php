@@ -226,15 +226,8 @@
 			
 		</div>
 
-	</body>
-	</html>
-		
-	<input type="hidden" id="total_page" value="<?php echo $total_page; ?>">
-
-	<div class="d-flex justify-content-center">
-
-		<form method="POST">
-			
+		<div class="d-flex justify-content-center">
+				
 			<ul class="pagination pagination-lg">
 
 				<?php
@@ -256,7 +249,7 @@
 					?>                                                                                                  
 						<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
 
-							<a class="page-link" href="Students.php?page=<?php echo $i ;?>" type="submit">
+							<a class="page-link" href="Students.php?page=<?php echo $i ;?>">
 
 									<?php echo $i; ?>
 
@@ -283,10 +276,11 @@
 					?>		
 				
 			</ul>
+			
+		</div>
 
-		</form>
-		
-	</div>
+	</body>
+	</html>	
 
 <?php 
 

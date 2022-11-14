@@ -22,6 +22,8 @@
 		$data = mysqli_fetch_assoc($result);
 
 		if (isset($_REQUEST['search_text']) && !empty($_REQUEST['search_text'])) {
+
+			$page = (isset($_GET['page']) && !empty($_GET['page'])) ? $_GET['page'] : 1;
 			
 			$search_text = $_REQUEST['search_text'];
 			
@@ -34,9 +36,22 @@
 					OR student_mother_name LIKE '%$search_text%' 
 					OR student_guardian_id LIKE '%$search_text%' ";
 
-			$sql = " SELECT student_id, student_name, student_class, student_section,student_fees_status FROM table_students $where ORDER BY student_id ";
+			$page_first_result = ($page-1) * 5;
+
+			// $limit = " LIMIT $page_first_result, 5 ";
+
+			$sql = " SELECT student_id, student_name, student_class, student_section,student_fees_status FROM table_students $where ORDER BY student_id ASC ";
 
 			$result = mysqli_query($connection, $sql);
+
+			$total_rows = mysqli_num_rows($result);	
+			$total_pages = ceil($total_rows/ 5);
+
+		}
+
+		if (isset($_REQUEST['fees_status'])) {
+			
+			print_r($_REQUEST['fees_status']);exit;
 
 		}
 
@@ -84,6 +99,38 @@
 
 	</script>
 
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+
+			$("#feesStatus-dropdown").change(function(){
+
+				var fees_status = $(this).val();
+
+				$.ajax({
+
+					type: 'POST',
+					url: 'Dashboard.php',
+					data: {
+
+						fees_status: fees_status
+
+					},
+					success: function(response){
+						
+					},
+					failure:function(response){
+
+					}
+
+				});
+
+			});
+
+		});
+
+	</script>
+
 	<body>
 
 	 	<div class="container mt-5 dashboard">
@@ -92,7 +139,7 @@
 				
 				<div class="col-md-6">
 
-						<a href="Students.php                                                                    " class="text-decoration-none">
+						<a href="Students.php" class="text-decoration-none">
 
 							<div class="card h-100">
 							
@@ -155,6 +202,27 @@
 					</div>  
 
 				</form>
+
+				<!-- <form method="POST"> -->
+					
+					<!-- <div class="dropdown" id="feesStatus-dropdown">
+
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="feesStatus" data-bs-toggle="dropdown" aria-expanded="false">
+								
+							Fees Status
+
+						</button>
+
+						<ul class="dropdown-menu" aria-labelledby="feesStatus">
+							
+							<li><a class="dropdown-item" href="Dashboard.php" value="1" id="feesStatus-dropdown">Paid</a></li>
+							<li><a class="dropdown-item" href="Dashboard.php" value="0" id="feesStatus-dropdown">Not Paid</a></li>
+
+						</ul>
+						
+					</div> -->
+
+				<!-- </form> -->
 
 			</div>
 
@@ -243,7 +311,65 @@
 					
 				</table>
 
-			</div>		
+			</div>
+
+			<?php if (isset($_REQUEST['search_text']) && !empty($_REQUEST['search_text'])) { ?>
+
+				<div class="d-flex justify-content-center" id="pagination">
+				 
+				 	<ul class="pagination pagination-lg">
+
+				 		<?php 
+
+				 			if ($page > 1 ) { ?>
+				 					
+				 				<li>
+				 				 	
+				 				 	<a class="page-link" href="Dashboard.php?page=<?php echo $page-1 ;?>">Previous</a>
+
+				 				</li>		
+
+				 			<?php  
+
+				 			}
+
+				 			for ($i=1; $i <= $total_pages; $i++) { 
+
+				 			?>
+				 				
+				 				<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
+
+				 					<a class="page-link" href="Dashboard.php?page=<?php echo $i; ?>">
+
+				 							<?php echo $i; ?>
+
+				 					</a>
+
+				 				</li>
+
+				 		<?php
+				 				
+				 			}
+
+				 			if ($page < $total_pages) { ?>
+									
+								<li>
+								 	
+								 	<a class="page-link" href="Dashboard.php?page=<?php echo $page+1 ;?>">Next</a>
+
+								</li>		
+
+							<?php  
+
+								}
+
+							?>	
+				 		
+				 	</ul>
+				 	
+				</div>
+
+			<?php } ?>		
 
 	 	</div>
 
