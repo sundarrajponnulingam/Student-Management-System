@@ -232,48 +232,52 @@
 
 				<?php
 
-					if ($page > 1 ) { ?>
+					if ($total_pages > 1) {
+						
+						if ($page > 1 ) { ?>
+								
+							<li>
+							 	
+							 	<a class="page-link" href="Students.php?page=<?php echo $page-1 ;?>">Previous</a>
+
+							</li>		
+
+						<?php  
+
+							}
+
+						for ($i=1; $i <= $total_pages; $i++) { 
+
+						?>                                                                                                  
+							<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
+
+								<a class="page-link" href="Students.php?page=<?php echo $i ; echo (isset($_REQUEST['search_text']) && !empty($_REQUEST['search_text'])) ? '?search_text='.$_REQUEST['search_text'] : ''; ?>">
+
+										<?php echo $i; ?>
+
+								</a>
+
+							</li>
+
+					<?php
 							
-						<li>
-						 	
-						 	<a class="page-link" href="Students.php?page=<?php echo $page-1 ;?>">Previous</a>
-
-						</li>		
-
-					<?php  
-
 						}
 
-					for ($i=1; $i <= $total_pages; $i++) { 
+						if ($page < $total_pages) { ?>
+								
+							<li>
+							 	
+							 	<a class="page-link" href="Students.php?page=<?php echo $page+1 ;?>">Next</a>
 
-					?>                                                                                                  
-						<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
+							</li>		
 
-							<a class="page-link" href="Students.php?page=<?php echo $i ;?>">
+						<?php  
 
-									<?php echo $i; ?>
+							}
 
-							</a>
-
-						</li>
-
-				<?php
-						
 					}
 
-					if ($page < $total_pages) { ?>
-							
-						<li>
-						 	
-						 	<a class="page-link" href="Students.php?page=<?php echo $page+1 ;?>">Next</a>
-
-						</li>		
-
-					<?php  
-
-						}
-
-					?>		
+						?>		
 				
 			</ul>
 			

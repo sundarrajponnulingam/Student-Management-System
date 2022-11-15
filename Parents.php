@@ -175,49 +175,53 @@
 
 		 		<?php
 
-		 			if ($page > 1 ) { ?>
-		 					
-		 				<li>
-		 				 	
-		 				 	<a class="page-link" href="Parents.php?page=<?php echo $page-1 ;?>">Previous</a>
+		 			if ($total_pages > 1) {
+						
+			 			if ($page > 1 ) { ?>
+			 					
+			 				<li>
+			 				 	
+			 				 	<a class="page-link" href="Parents.php?page=<?php echo $page-1 ;?>">Previous</a>
 
-		 				</li>		
+			 				</li>		
 
-		 			<?php  
+			 			<?php  
 
-		 			} 
+			 			} 
 
-		 			for ($i=1; $i <= $total_pages; $i++) { 
+			 			for ($i=1; $i <= $total_pages; $i++) { 
 
-		 			?>
-		 				
-		 				<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
+			 			?>
+			 				
+			 				<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
 
-		 					<a class="page-link" href="Parents.php?page=<?php echo $i; ?>">
+			 					<a class="page-link" href="Parents.php?page=<?php echo $i; ?>">
 
-		 							<?php echo $i; ?>
+			 							<?php echo $i; ?>
 
-		 					</a>
+			 					</a>
 
-		 				</li>
+			 				</li>
 
-		 		<?php
-		 				
+			 		<?php
+			 				
+			 			}
+
+			 			if ($page < $total_pages) { ?>
+								
+							<li>
+							 	
+							 	<a class="page-link" href="Parents.php?page=<?php echo $page+1 ;?>">Next</a>
+
+							</li>		
+
+						<?php  
+
+							}
+
 		 			}
 
-		 			if ($page < $total_pages) { ?>
-							
-						<li>
-						 	
-						 	<a class="page-link" href="Parents.php?page=<?php echo $page+1 ;?>">Next</a>
-
-						</li>		
-
-					<?php  
-
-						}
-
-					?>
+		 				?>
 		 		
 		 	</ul>
 		 	

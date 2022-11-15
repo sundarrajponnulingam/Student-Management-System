@@ -84,8 +84,6 @@
 					},
 					success: function(response){
 
-						$("#search_result").html(html).show();
-
 					},
 					failure: function(response){
 						
@@ -319,49 +317,53 @@
 				 
 				 	<ul class="pagination pagination-lg">
 
-				 		<?php 
-
-				 			if ($page > 1 ) { ?>
-				 					
-				 				<li>
-				 				 	
-				 				 	<a class="page-link" href="Dashboard.php?page=<?php echo $page-1 ;?>">Previous</a>
-
-				 				</li>		
-
-				 			<?php  
-
-				 			}
-
-				 			for ($i=1; $i <= $total_pages; $i++) { 
-
-				 			?>
-				 				
-				 				<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
-
-				 					<a class="page-link" href="Dashboard.php?page=<?php echo $i; ?>">
-
-				 							<?php echo $i; ?>
-
-				 					</a>
-
-				 				</li>
-
 				 		<?php
+
+				 			if ($total_pages > 1) {
 				 				
-				 			}
+	 				 			if ($page > 1 ) { ?>
+	 				 					
+	 				 				<li>
+	 				 				 	
+	 				 				 	<a class="page-link" href="Dashboard.php?page=<?php echo $page-1 ;?>">Previous</a>
 
-				 			if ($page < $total_pages) { ?>
-									
-								<li>
-								 	
-								 	<a class="page-link" href="Dashboard.php?page=<?php echo $page+1 ;?>">Next</a>
+	 				 				</li>		
 
-								</li>		
+	 				 			<?php  
 
-							<?php  
+	 				 			}
 
-								}
+	 				 			for ($i=1; $i <= $total_pages; $i++) { 
+
+	 				 			?>
+	 				 				
+	 				 				<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
+
+	 				 					<a class="page-link" href="Dashboard.php?page=<?php echo $i; ?>">
+
+	 				 							<?php echo $i; ?>
+
+	 				 					</a>
+
+	 				 				</li>
+
+	 				 		<?php
+	 				 				
+	 				 			}
+
+	 				 			if ($page < $total_pages) { ?>
+	 									
+	 								<li>
+	 								 	
+	 								 	<a class="page-link" href="Dashboard.php?page=<?php echo $page+1 ;?>">Next</a>
+
+	 								</li>		
+
+	 							<?php  
+
+	 								}
+
+				 			 } 
 
 							?>	
 				 		
