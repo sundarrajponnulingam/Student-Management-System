@@ -1,6 +1,5 @@
 <?php 
 	
-	ob_start();
 	session_start();
 
 	$page_variable = 'Students';
@@ -13,29 +12,20 @@
 		$where = "";
 		$limit = "";
 
-		$sql = "SELECT * FROM table_students";
-		
-		$result = mysqli_query($connection, $sql);
-
-		$total_rows = mysqli_num_rows($result);	
-		$total_pages = ceil($total_rows/ 5);
-
 		$page = (isset($_GET['page']) && !empty($_GET['page'])) ? $_GET['page'] : 1 ;	
 
-		if (isset($_REQUEST['search_text'])) {
+		if (isset($_REQUEST['search']) || isset($_GET['search'])) {
 
-			$search_text = $_REQUEST['search_text'];
+			$search = $_REQUEST['search'];
 			
-			$where = " WHERE student_id LIKE '%$search_text%' 
-					OR student_name LIKE '%$search_text%' 
-					OR student_class LIKE '%$search_text%' 
-					OR student_section LIKE '%$search_text%' 
-					OR student_date_of_birth LIKE '%$search_text%' 
-					OR student_father_name LIKE '%$search_text%' 
-					OR student_mother_name LIKE '%$search_text%' 
-					OR student_guardian_id LIKE '%$search_text%' ";
-
-			$page = 1;
+			$where = " WHERE student_id LIKE '%$search%' 
+					OR student_name LIKE '%$search%' 
+					OR student_class LIKE '%$search%' 
+					OR student_section LIKE '%$search%' 
+					OR student_date_of_birth LIKE '%$search%' 
+					OR student_father_name LIKE '%$search%' 
+					OR student_mother_name LIKE '%$search%' 
+					OR student_guardian_id LIKE '%$search%' ";
 
 		}
 
@@ -43,18 +33,14 @@
 
 		$limit = " LIMIT $page_first_result, 5 ";
 
-		if (isset($_REQUEST['search_text']) && !empty($_REQUEST['search_text'])) {
+		$sql = " SELECT student_id, student_name, student_class, student_section
+			FROM table_students $where ORDER BY student_id ASC ";
 
-			$sql = " SELECT student_id, student_name, student_class, student_section
-				FROM table_students $where ORDER BY student_id ASC ";
+		$result = mysqli_query($connection, $sql);
+	
+		$total_rows = mysqli_num_rows($result);	
+		$total_pages = ceil($total_rows / 5);
 
-			$result = mysqli_query($connection, $sql);
-		
-			$total_rows = mysqli_num_rows($result);	
-			$total_pages = ceil($total_rows / 5);
-
-		}
-		
 		$sql = " SELECT student_id, student_name, student_class, student_section
 			FROM table_students $where ORDER BY student_id ASC $limit ";
 
@@ -76,15 +62,15 @@
 
 				$('#search').click(function(){
 
-					var search_text = $('#search_text').val();
+					var search = $('#search').val();
 
 					$.ajax({
 
-						type : 'POST',
+						type : 'GET',
 						url : 'Students.php',
 						data :{
 
-							search_text: search_text
+							search: search
 
 						},
 						success : function(response){
@@ -102,51 +88,17 @@
 
 		</script>
 
-		<script type="text/javascript">
-			
-			$(document).ready(function(){
-
-				var total_pages = <?php echo $total_pages; ?>;
-
-				$(".page-link").click(function(){	
-
-					var page = $(this).val();
-
-					$.ajax({
-
-						type : 'POST',
-						url : 'Students.php',
-						data : {
-
-							page : page
-
-						},
-						success : function(response){
-
-						},
-						failure : function (response){
-
-						}
-
-					}); 
-
-				});
-
-			});
-
-		</script>
-
 	<body>
 
 		<div class="container mt-5">
 
 			<div class="row mb-4 float-start">
 
-				<form method="POST">
+				<form method="GET">
 					
 					<div class="d-flex justify-content-between">
 					
-						<input type="text" class="form-control" name="search_text" id="search_text">
+						<input type="text" class="form-control" name="search" id="search">
 
 						<button type="submit" class="btn btn-light" id="search">
 
@@ -238,7 +190,7 @@
 								
 							<li>
 							 	
-							 	<a class="page-link" href="Students.php?page=<?php echo $page-1 ;?>">Previous</a>
+							 	<a class="page-link" href="Students.php?page=<?php echo $page-1 ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : '';?>">Previous</a>
 
 							</li>		
 
@@ -251,7 +203,7 @@
 						?>                                                                                                  
 							<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
 
-								<a class="page-link" href="Students.php?page=<?php echo $i ; echo (isset($_REQUEST['search_text']) && !empty($_REQUEST['search_text'])) ? '?search_text='.$_REQUEST['search_text'] : ''; ?>">
+								<a class="page-link" href="Students.php?page=<?php echo $i ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : ''; ?>">
 
 										<?php echo $i; ?>
 
@@ -267,7 +219,7 @@
 								
 							<li>
 							 	
-							 	<a class="page-link" href="Students.php?page=<?php echo $page+1 ;?>">Next</a>
+							 	<a class="page-link" href="Students.php?page=<?php echo $page+1 ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : '';?>">Next</a>
 
 							</li>		
 
