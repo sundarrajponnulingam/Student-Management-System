@@ -21,18 +21,15 @@
 		$total_pages = ceil($total_rows / 5);
 
 		$page = (isset($_GET['page']) && !empty($_GET['page'])) ? $_GET['page'] : 1 ;		
+		if (isset($_REQUEST['search'])|| isset($_GET['search'])) {
 
-		if (isset($_REQUEST['search_text'])) {
-
-			$search_text = $_REQUEST['search_text'];
+			$search = $_REQUEST['search'];
 			
-			$where = " WHERE parents_guardian_id LIKE '%$search_text%' 
-					OR parents_father_name LIKE '%$search_text%' 
-					OR parents_mother_name LIKE '%$search_text%' 
-					OR parents_students_id LIKE '%$search_text%' 
-					OR parents_students_name LIKE '%$search_text%' ";
-
-			$page = 1;
+			$where = " WHERE parents_guardian_id LIKE '%$search%' 
+					OR parents_father_name LIKE '%$search%' 
+					OR parents_mother_name LIKE '%$search%' 
+					OR parents_students_id LIKE '%$search%' 
+					OR parents_students_name LIKE '%$search%' ";
 
 		}
 
@@ -40,16 +37,12 @@
 
 		$limit = " LIMIT $page_first_result, 5 ";
 
-		if (isset($_REQUEST['search_text']) && !empty($_REQUEST['search_text'])) {
+		$sql = " SELECT parents_guardian_id, parents_father_name, parents_students_name FROM table_parents $where ORDER BY parents_guardian_id ASC ";
 
-			$sql = " SELECT parents_guardian_id, parents_father_name, parents_students_name FROM table_parents $where ORDER BY parents_guardian_id ASC $limit ";
-
-			$result = mysqli_query($connection, $sql);
-			
-			$total_rows = mysqli_num_rows($result);	
-			$total_pages = ceil($total_rows / 5);
-
-		}
+		$result = mysqli_query($connection, $sql);
+		
+		$total_rows = mysqli_num_rows($result);	
+		$total_pages = ceil($total_rows / 5);
 
 		$sql = " SELECT parents_guardian_id, parents_father_name, parents_students_name FROM table_parents $where ORDER BY parents_guardian_id ASC $limit ";
 
@@ -71,15 +64,15 @@
 
 				$('#search').click(function(){
 
-					var search_text = $('#search_text').val();
+					var search = $('#search').val();
 
 					$.ajax({
 
-						type : 'POST',
+						type : 'GET',
 						url : 'Parents.php',
 						data :{
 
-							search_text: search_text
+							search: search
 
 						},
 						success : function(response){
@@ -103,11 +96,11 @@
 
 			<div class="row mb-4 float-start">
 
-				<form method="POST">
+				<form method="GET">
 					
 					<div class="d-flex justify-content-between">
 					
-						<input type="text" class="form-control" name="search_text" id="search_text">
+						<input type="text" class="form-control" name="search" id="search">
 
 						<button type="submit" class="btn btn-light" id="search">
 
@@ -181,7 +174,7 @@
 			 					
 			 				<li>
 			 				 	
-			 				 	<a class="page-link" href="Parents.php?page=<?php echo $page-1 ;?>">Previous</a>
+			 				 	<a class="page-link" href="Parents.php?page=<?php echo $page-1 ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : '';?>">Previous</a>
 
 			 				</li>		
 
@@ -193,7 +186,7 @@
 
 			 			?>
 			 				
-			 				<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
+			 				<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : '';?>">
 
 			 					<a class="page-link" href="Parents.php?page=<?php echo $i; ?>">
 
@@ -211,7 +204,7 @@
 								
 							<li>
 							 	
-							 	<a class="page-link" href="Parents.php?page=<?php echo $page+1 ;?>">Next</a>
+							 	<a class="page-link" href="Parents.php?page=<?php echo $page+1 ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : '';?>">Next</a>
 
 							</li>		
 
