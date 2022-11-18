@@ -117,82 +117,90 @@
 
 			</div>
 
-			<table class="table table-bordered table-hover text-center">
+		</div>
 
-				<thead>
-					
-					<tr>
+		<?php if (mysqli_num_rows($result) >=1 ) { ?>
+
+			<div class="container mt-5">
+				
+				<table class="table table-bordered table-hover text-center">
+
+					<thead>
 						
-						<th scope="col">Id</th>
-						<th scope="col">Name</th>
-						<th scope="col">Class</th>
-						<th scope="col">Section</th>
-						<th scope="col">Fees</th>
-
-					</tr>
-
-				</thead>
-
-				<tbody>
-
-					<?php 
-
-						while ($data = mysqli_fetch_assoc($result)) {
-
-					 ?>
-					
-					<tr>
-						
-						<th scope="row"><?php echo $data['student_id']; ?></th>
-						<td><?php echo $data['student_name']; ?></td>
-						<td><?php echo $data['student_class']; ?></td>
-						<td><?php echo $data['student_section']; ?></td>
-						<td>
+						<tr>
 							
-							<?php 
+							<th scope="col">Id</th>
+							<th scope="col">Name</th>
+							<th scope="col">Class</th>
+							<th scope="col">Section</th>
+							<th scope="col">Fees</th>
 
-								if ($data['student_fees_status'] == 1) {
+						</tr>
 
-							?>
-									<div class=" badge rounded-pill bg-success text-white">
-																
-										Paid
+					</thead>
+
+					<tbody>
+
+						<?php 
+
+							while ($data = mysqli_fetch_assoc($result)) {
+
+						 ?>
+						
+						<tr>
+							
+							<th scope="row"><?php echo $data['student_id']; ?></th>
+							<td><?php echo $data['student_name']; ?></td>
+							<td><?php echo $data['student_class']; ?></td>
+							<td><?php echo $data['student_section']; ?></td>
+							<td>
+								
+								<?php 
+
+									if ($data['student_fees_status'] == 1) {
+
+								?>
+										<div class=" badge rounded-pill bg-success text-white">
+																	
+											Paid
+
+										</div>
+								<?php
+
+									}
+
+									else{
+
+								?>		
+									<div class=" badge rounded-pill bg-danger text-white">
+										
+										Not Paid
 
 									</div>
-							<?php
 
-								}
+								<?php
 
-								else{
+									}
 
-							?>		
-								<div class=" badge rounded-pill bg-danger text-white">
-									
-									Not Paid
+								 ?>
 
-								</div>
+							</td>
 
-							<?php
+						</tr>
 
-								}
+						<?php 
 
-							 ?>
+						}
 
-						</td>
+						 ?>
 
-					</tr>
+					</tbody>
+					
+				</table>
 
-					<?php 
+			</div>
 
-					}
-
-					 ?>
-
-				</tbody>
-				
-			</table>
-			
-		</div>
+	<?php } ?>
 
 		<div class="d-flex justify-content-center">
 		 

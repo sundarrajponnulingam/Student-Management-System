@@ -224,92 +224,96 @@
 
 			</div>
 
-			<div class="container mt-5" id="search_result" <?php echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '' : 'style="display: none;"' ?>>
-			
-				<table class="table table-bordered table-hover text-center">
+			<?php if (mysqli_num_rows($result) >=1 ) { ?>
 
-					<thead>
-						
-						<tr>
+				<div class="container mt-5" id="search_result" <?php echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '' : 'style="display: none;"' ?>>
+				
+					<table class="table table-bordered table-hover text-center">
+
+						<thead>
 							
-							<th scope="col">Id</th>
-							<th scope="col">Name</th>
-							<th scope="col">Class</th>
-							<th scope="col">Section</th>
-							<th scope="col">Fees</th>
-							<th scope="col">Action</th>
-
-						</tr>
-
-					</thead>
-
-					<tbody>
-						
-						<?php 
-
-						while ($data = mysqli_fetch_assoc($result)) {
-						
-						?>
-
-						<tr>
-
-							<th scope="row"><?php echo $data['student_id']; ?></th>
-							<td><?php echo $data['student_name']; ?></td>
-							<td><?php echo $data['student_class']; ?></td>
-							<td><?php echo $data['student_section']; ?></td>
-							<td>
+							<tr>
 								
-								<?php 
+								<th scope="col">Id</th>
+								<th scope="col">Name</th>
+								<th scope="col">Class</th>
+								<th scope="col">Section</th>
+								<th scope="col">Fees</th>
+								<th scope="col">Action</th>
 
-									if ($data['student_fees_status'] == 1) {
+							</tr>
 
-								?>
-										<div class=" badge rounded-pill bg-success text-white">
-																	
-											Paid
+						</thead>
+
+						<tbody>
+							
+							<?php 
+
+							while ($data = mysqli_fetch_assoc($result)) {
+							
+							?>
+
+							<tr>
+
+								<th scope="row"><?php echo $data['student_id']; ?></th>
+								<td><?php echo $data['student_name']; ?></td>
+								<td><?php echo $data['student_class']; ?></td>
+								<td><?php echo $data['student_section']; ?></td>
+								<td>
+									
+									<?php 
+
+										if ($data['student_fees_status'] == 1) {
+
+									?>
+											<div class=" badge rounded-pill bg-success text-white">
+																		
+												Paid
+
+											</div>
+									<?php
+
+										}
+
+										else{
+
+									?>		
+										<div class=" badge rounded-pill bg-danger text-white">
+											
+											Not Paid
 
 										</div>
-								<?php
 
-									}
+									<?php
 
-									else{
+										}
 
-								?>		
-									<div class=" badge rounded-pill bg-danger text-white">
-										
-										Not Paid
+									 ?>
 
-									</div>
+								</td>
+								<td class="d-flex justify-content-between">
+									
+									<a href="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#studentViewModal-<?php echo $data['student_id'] ?>">View</a>
+									<a href="" class="btn btn-warning" data-bs-toggle="modal"data-bs-target="#studentEditModal-<?php echo $data['student_id'] ?>">Edit</a>
+									<a href="" class="btn btn-danger" data-bs-toggle="modal"data-bs-target="#studentDeleteModal-<?php echo $data['student_id'] ?>">Delete</a>
 
-								<?php
-
-									}
-
-								 ?>
-
-							</td>
-							<td class="d-flex justify-content-between">
+								</td>
 								
-								<a href="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#studentViewModal-<?php echo $data['student_id'] ?>">View</a>
-								<a href="" class="btn btn-warning" data-bs-toggle="modal"data-bs-target="#studentEditModal-<?php echo $data['student_id'] ?>">Edit</a>
-								<a href="" class="btn btn-danger" data-bs-toggle="modal"data-bs-target="#studentDeleteModal-<?php echo $data['student_id'] ?>">Delete</a>
+							</tr>
 
-							</td>
-							
-						</tr>
+							<?php 
 
-						<?php 
+								}
 
-							}
+							 ?>
 
-						 ?>
+						</tbody>
+						
+					</table>
 
-					</tbody>
-					
-				</table>
+				</div>
 
-			</div>
+			<?php } ?>
 
 			<?php if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) { ?>
 

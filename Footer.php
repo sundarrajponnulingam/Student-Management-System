@@ -915,6 +915,38 @@
 
  ?>
 
+ <div class="modal" tabindex="-1" id="noResult">
+
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+
+			<div class="modal-header">
+
+				<h5 class="modal-title">Oops..!</h5>
+
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				
+			</div>
+
+			<div class="modal-body">
+
+				<p>No Data Found</p>
+				
+			</div>
+
+			<div class="modal-footer">
+				
+				<button type="button" class="btn btn-warning">Close</button>
+
+			</div>
+			
+		</div>
+		
+	</div> 	
+
+ </div>
+
 <script type="text/javascript" src="./assets/jQuery/jQuery.min.js"></script>
 <!-- <script type="text/javascript" src="./assets/Popper/popper.min.js"></script> -->
 <script type="text/javascript" src="./assets/bootstrap/js/bootstrap.min.js"></script>

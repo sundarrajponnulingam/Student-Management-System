@@ -88,6 +88,16 @@
 
 		</script>
 
+		<?php if (mysqli_num_rows($result) == 0) { ?>
+
+			<script type="text/javascript">
+				
+				$("#noResult").modal('show');
+
+			</script>
+
+		<?php } ?>
+
 	<body>
 
 		<div class="container mt-5">
@@ -124,59 +134,63 @@
 			
 		</div>
 
-		<div class="container mt-5">
+		<?php if (mysqli_num_rows($result) >= 1 ) { ?>
 
-			<table class="table table-bordered table-hover text-center">
+			<div class="container mt-5">
 
-				<thead>
-					
-					<tr>
+				<table class="table table-bordered table-hover text-center">
+
+					<thead>
 						
-						<th scope="col">Id</th>
-						<th scope="col">Name</th>
-						<th scope="col">Class</th>
-						<th scope="col">Section</th>
-						<th scope="col">Action</th>
-
-					</tr>
-
-				</thead>
-
-				<tbody>
-					
-					<?php 
-
-					while ($data = mysqli_fetch_assoc($result)) {
-					
-					?>
-
-					<tr>
-
-						<th scope="row"><?php echo $data['student_id']; ?></th>
-						<td><?php echo $data['student_name']; ?></td>
-						<td><?php echo $data['student_class']; ?></td>
-						<td><?php echo $data['student_section']; ?></td>
-						<td class="d-flex justify-content-between">
+						<tr>
 							
-							<a href="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#studentViewModal-<?php echo $data['student_id'] ?>">View</a>
-							<a href="" class="btn btn-warning" data-bs-toggle="modal"data-bs-target="#studentEditModal-<?php echo $data['student_id'] ?>">Edit</a>
-							<a href="" class="btn btn-danger" data-bs-toggle="modal"data-bs-target="#studentDeleteModal-<?php echo $data['student_id'] ?>">Delete</a>
+							<th scope="col">Id</th>
+							<th scope="col">Name</th>
+							<th scope="col">Class</th>
+							<th scope="col">Section</th>
+							<th scope="col">Action</th>
 
-						</td>
+						</tr>
+
+					</thead>
+
+					<tbody>
 						
-					</tr>
+						<?php 
 
-					<?php 
+						while ($data = mysqli_fetch_assoc($result)) {
+						
+						?>
 
-						}
+						<tr>
 
-					 ?>
+							<th scope="row"><?php echo $data['student_id']; ?></th>
+							<td><?php echo $data['student_name']; ?></td>
+							<td><?php echo $data['student_class']; ?></td>
+							<td><?php echo $data['student_section']; ?></td>
+							<td class="d-flex justify-content-between">
+								
+								<a href="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#studentViewModal-<?php echo $data['student_id'] ?>">View</a>
+								<a href="" class="btn btn-warning" data-bs-toggle="modal"data-bs-target="#studentEditModal-<?php echo $data['student_id'] ?>">Edit</a>
+								<a href="" class="btn btn-danger" data-bs-toggle="modal"data-bs-target="#studentDeleteModal-<?php echo $data['student_id'] ?>">Delete</a>
 
-				</tbody>
+							</td>
+							
+						</tr>
+
+						<?php 
+
+							}
+
+						 ?>
+
+					</tbody>
+					
+				</table>
 				
-			</table>
-			
-		</div>
+			</div>
+
+		<?php } ?>
 
 		<div class="d-flex justify-content-center">
 				

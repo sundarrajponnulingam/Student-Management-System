@@ -114,53 +114,61 @@
 				
 			</div>
 
-			<table class="table table-bordered table-hover text-center">
-
-				<thead>
-					
-					<tr>
-						
-						<th scope="col">Id</th>
-						<th scope="col">Name</th>
-						<th scope="col">Students</th>
-						<th scope="col">Action</th>
-
-					</tr>
-
-				</thead>
-
-				<tbody>
-					
-					<?php 
-
-					while ($data = mysqli_fetch_assoc($result)) {
-					
-					?>
-
-					<tr>
-
-						<th scope="row"><?php echo $data['parents_guardian_id']; ?></th>
-						<td><?php echo $data['parents_father_name']; ?></td>
-						<td><?php echo $data['parents_students_name']; ?></td>
-						<td class="d-flex justify-content-center">
-							
-							<a href="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#parentViewModal-<?php echo $data['parents_guardian_id']; ?>">View</a>
-
-						</td>
-						
-					</tr>
-
-					<?php 
-
-						}
-
-					 ?>
-
-				</tbody>
-				
-			</table>
-			
 		</div>
+
+		<?php if (mysqli_num_rows($result) >=1 ) { ?>
+
+			<div class="container mt-5">
+
+				<table class="table table-bordered table-hover text-center">
+
+					<thead>
+						
+						<tr>
+							
+							<th scope="col">Id</th>
+							<th scope="col">Name</th>
+							<th scope="col">Students</th>
+							<th scope="col">Action</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody>
+						
+						<?php 
+
+						while ($data = mysqli_fetch_assoc($result)) {
+						
+						?>
+
+						<tr>
+
+							<th scope="row"><?php echo $data['parents_guardian_id']; ?></th>
+							<td><?php echo $data['parents_father_name']; ?></td>
+							<td><?php echo $data['parents_students_name']; ?></td>
+							<td class="d-flex justify-content-center">
+								
+								<a href="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#parentViewModal-<?php echo $data['parents_guardian_id']; ?>">View</a>
+
+							</td>
+							
+						</tr>
+
+						<?php 
+
+							}
+
+						 ?>
+
+					</tbody>
+					
+				</table>
+				
+			</div>
+
+		<?php }	?>
 
 		<div class="d-flex justify-content-center">
 		 
