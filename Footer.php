@@ -915,8 +915,8 @@
 
  ?>
 
- <div class="modal" tabindex="-1" id="noResult">
-
+<div class="modal" tabindex="-1" id="no_data_found">
+		
 	<div class="modal-dialog">
 
 		<div class="modal-content">
@@ -924,8 +924,6 @@
 			<div class="modal-header">
 
 				<h5 class="modal-title">Oops..!</h5>
-
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				
 			</div>
 
@@ -937,7 +935,7 @@
 
 			<div class="modal-footer">
 				
-				<button type="button" class="btn btn-warning">Close</button>
+				<button type="submit" class="btn btn-warning" id="no_data_found_close">Close</button>
 
 			</div>
 			
@@ -945,9 +943,23 @@
 		
 	</div> 	
 
- </div>
+</div>
 
 <script type="text/javascript" src="./assets/jQuery/jQuery.min.js"></script>
 <!-- <script type="text/javascript" src="./assets/Popper/popper.min.js"></script> -->
 <script type="text/javascript" src="./assets/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+
+		$('#no_data_found_close').click(function(){
+
+			$('#no_data_found').modal('hide');
+
+		});
+
+	});
+
+</script>

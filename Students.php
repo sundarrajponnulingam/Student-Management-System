@@ -88,15 +88,19 @@
 
 		</script>
 
-		<?php if (mysqli_num_rows($result) == 0) { ?>
+		<script type="text/javascript">
 
-			<script type="text/javascript">
-				
-				$("#noResult").modal('show');
+			$(document).ready(function(){
 
-			</script>
+				<?php if (mysqli_num_rows($result) == 0) { ?>
 
-		<?php } ?>
+					$("#no_data_found").modal('show');
+
+				<?php } ?>
+
+			});
+
+		</script>
 
 	<body>
 
