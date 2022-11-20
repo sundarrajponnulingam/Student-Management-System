@@ -304,7 +304,7 @@
 
 									<div class="col-md-2">	
 
-										<button type="button" class="btn btn-primary" name="view_document">View</button>
+										<a class="btn btn-primary" href="./documents/<?php echo $data['student_document']; ?>">View</a>
 									</div>	
 
 								<?php }
@@ -483,7 +483,7 @@
 
 										?>
 											
-											<button type="button" class="btn btn-primary" name="view_document">View</button>
+											<a class="btn btn-primary" href="./documents/<?php echo $data['student_document']; ?>">View</a>
 
 											<button type="button" class="btn btn-danger" name="delete_document" data-bs-toggle="modal" data-bs-target="#studentDocumentDeleteModal-<?php echo $data['student_id'] ?>">Delete</button>
 
