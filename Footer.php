@@ -917,25 +917,33 @@
 
 <div class="modal" tabindex="-1" id="no_data_found">
 		
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-dialog-centered">
 
 		<div class="modal-content">
 
 			<div class="modal-header">
 
-				<h5 class="modal-title">Oops..!</h5>
+				<h5 class="modal-title mx-auto">
+						
+					<img src="./assets/icons/Exclamation.svg" width="50" height="50">
+
+				</h5>
 				
 			</div>
 
-			<div class="modal-body">
+			<div class="modal-body mx-auto">
 
-				<p>No Data Found</p>
+				<h4>
+
+					No Data Found
+
+				</h4>
 				
 			</div>
 
 			<div class="modal-footer">
 				
-				<button type="submit" class="btn btn-warning" id="no_data_found_close">Close</button>
+				<button type="submit" class="btn btn-secondary" id="no_data_found_close">Close</button>
 
 			</div>
 			
@@ -957,6 +965,8 @@
 		$('#no_data_found_close').click(function(){
 
 			$('#no_data_found').modal('hide');
+
+			window.history.back();
 
 		});
 

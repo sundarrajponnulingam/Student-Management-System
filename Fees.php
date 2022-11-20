@@ -92,6 +92,20 @@
 			});
 
 		</script>
+
+		<script type="text/javascript">
+
+			$(document).ready(function(){
+
+				<?php if (mysqli_num_rows($result) == 0) { ?>
+
+					$("#no_data_found").modal('show');
+
+				<?php } ?>
+
+			});
+
+		</script>
 		
 	 <body>
 
