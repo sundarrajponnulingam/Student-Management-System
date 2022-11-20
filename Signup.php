@@ -26,7 +26,7 @@
 
 				<form method="POST" action="Signup_action.php">
 
-					<div class="row mb-2">
+					<div class="row mt-3 mb-2">
 						
 						<label class="col-6 col-form-label"><b>Username</b></label>
 

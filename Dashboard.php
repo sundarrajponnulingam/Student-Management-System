@@ -71,7 +71,7 @@
 
 			$("#search").click(function(){
 
-				var search = $("#search").val();
+				var search = $("#search_text").val();
 
 				$.ajax({
 
@@ -189,7 +189,7 @@
 					
 					<div class="d-flex justify-content-between">
 					
-						<input type="text" class="form-control" name="search" id="search" placeholder="Search Here">
+						<input type="text" class="form-control" name="search" id="search_text" placeholder="Search Here">
 
 						<button type="submit" class="btn btn-light" id="search">
 
@@ -201,9 +201,9 @@
 
 				</form>
 
-				<!-- <form method="POST"> -->
+				<!-- <form method="POST">
 					
-					<!-- <div class="dropdown" id="feesStatus-dropdown">
+					<div class="dropdown" id="feesStatus-dropdown">
 
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="feesStatus" data-bs-toggle="dropdown" aria-expanded="false">
 								
@@ -218,9 +218,9 @@
 
 						</ul>
 						
-					</div> -->
+					</div>
 
-				<!-- </form> -->
+				</form> -->
 
 			</div>
 

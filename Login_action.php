@@ -47,7 +47,7 @@
 				$_SESSION['user_name'] = $user_name;
 				$_SESSION['user_role'] = $user_role;
 
-				if (!empty($_SESSION)) {
+				if (isset($_SESSION) && !empty($_SESSION)) {
 					
 					ob_end_clean();		
 					header("Location: Dashboard.php");
@@ -57,7 +57,7 @@
 				else{
 
 					ob_end_clean();
-					header("Location: Login.php");
+					header("Location: Login.php?message=Please Login");
 					exit();
 					
 				}
@@ -66,7 +66,7 @@
 			else{
 
 				ob_end_clean();
-				header("Location: Login.php");
+				header("Location: Login.php?message=Wrong Password");
 				exit();				
 
 			}
@@ -75,7 +75,7 @@
 		else{
 
 			ob_end_clean();
-			header("Location: Login.php");
+			header("Location: Login.php?message=No User Found");
 			exit();
 
 		}

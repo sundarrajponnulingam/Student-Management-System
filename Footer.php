@@ -973,3 +973,17 @@
 	});
 
 </script>
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+
+		$('.list-group-item').click(function(){
+
+			$('.offcanvas').offcanvas('hide');
+
+		});
+
+	});
+
+</script>

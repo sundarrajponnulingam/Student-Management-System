@@ -64,7 +64,7 @@
 
 				$('#search').click(function(){
 
-					var search = $('#search').val();
+					var search = $('#search_text').val();
 
 					$.ajax({
 
@@ -114,7 +114,7 @@
 					
 					<div class="d-flex justify-content-between">
 					
-						<input type="text" class="form-control" name="search" id="search">
+						<input type="text" class="form-control" name="search" id="search_text">
 
 						<button type="submit" class="btn btn-light" id="search">
 
