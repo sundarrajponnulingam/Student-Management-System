@@ -24,6 +24,16 @@
 
 			<div class="card-body text-center">
 
+				<?php if (isset($_GET['message']) && !empty($_GET['message'])) { ?>
+
+					<div class="alert alert-danger">
+						
+						<strong> <?php print_r($_GET['message']); ?> </strong>
+
+					</div>
+
+				<?php } ?>
+
 				<form method="POST" action="Signup_action.php">
 
 					<div class="row mt-3 mb-2">

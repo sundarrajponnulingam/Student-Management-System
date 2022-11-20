@@ -14,7 +14,10 @@
 		$student_mother_name = trim($_POST['student_mother_name']);
 		$student_address = trim($_POST['student_address']);
 		$student_fees_status = $_POST['student_fees_status']; 
-		$student_document = isset($_FILES['student_document']) ? $_FILES['student_document']['name'] : NULL;	
+		$student_document = isset($_FILES['student_document']) ? $_FILES['student_document']['name'] : NULL;
+
+		$temp_student_document = explode(".", $student_document);
+		$student_document = str_replace("'", "", current($temp_student_document)).round(microtime(true)).'.'.end($temp_student_document);	
 
 		if (isset($student_document)) {
 			

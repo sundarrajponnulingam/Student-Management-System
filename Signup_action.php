@@ -68,7 +68,7 @@
 		else{
 
 			ob_end_clean();
-			header("Location: Signup.php");
+			header("Location: Signup.php?message=Passwords doesnot match");
 			exit();
 			
 		}
