@@ -529,7 +529,7 @@
 
 			<form method="POST" action="Student_Document_Delete_action.php">
 				
-				<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-dialog modal-lg">
 
 					<div class="modal-content">	
 
