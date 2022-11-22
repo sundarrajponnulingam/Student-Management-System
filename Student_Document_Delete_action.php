@@ -3,10 +3,8 @@
 	ob_start();
 
 	require 'DB_Connect.php';
-
-	if (isset($_POST['student_document_delete'])) {
 		
-		$student_id = $_POST['student_id'];
+		$student_id = $_GET['student_id'];
 
 		$sql = " UPDATE table_students SET 
 
@@ -18,12 +16,8 @@
 
 		if ($result) {
 
-			ob_end_clean();
-
-			header("Location:Students.php");
-
+			return true;
+			
 		}
-
-	}
 
  ?>

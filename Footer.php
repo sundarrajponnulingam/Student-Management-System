@@ -526,46 +526,40 @@
 		</div>
 
 		<div class="modal fade" id="studentDocumentDeleteModal-<?php echo $data['student_id'] ?>" tabindex="-1" aria-labelledby="studentDeleteModalLabel" data-bs-backdrop="static" aria-hidden="true">
-
-			<form method="POST" action="Student_Document_Delete_action.php">
 				
-				<div class="modal-dialog modal-lg">
+			<div class="modal-dialog modal-lg">
 
-					<div class="modal-content">	
+				<div class="modal-content">	
 
-						<div class="modal-header">
+					<div class="modal-header">
 
-							<h5 class="modal-title d-flex justify-content-between" id="studentDocumentDeleteModalLabel">
-								
-								<img src="./assets/icons/Exclamation.svg" width="30" height="30">&nbsp &nbsp<span>Warning</span>
-
-							</h5>
-
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						<h5 class="modal-title d-flex justify-content-between" id="studentDocumentDeleteModalLabel">
 							
-						</div>
+							<img src="./assets/icons/Exclamation.svg" width="30" height="30">&nbsp &nbsp<span>Warning</span>
 
-						<div class="modal-body">
+						</h5>
 
-							<input type="hidden" name="student_id" value="<?php echo $data['student_id']; ?>">
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						
+					</div>
 
-							<span>Are you sure want to Delete</span>&nbsp<strong><?php echo $data['student_document']; ?></strong>&nbsp<img src="./assets/icons/Question.svg" width="30" height="30" class="mb-2">
-							
-						</div>
+					<div class="modal-body">
 
-						<div class="modal-footer">
+						<span>Are you sure want to Delete</span>&nbsp<strong><?php echo $data['student_document']; ?></strong>&nbsp<img src="./assets/icons/Question.svg" width="30" height="30" class="mb-2">
+						
+					</div>
 
-							<button type="submit" class="btn btn-danger" name="student_document_delete">Delete</button>
+					<div class="modal-footer">
 
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-							
-						</div>
+						<button type="submit" class="btn btn-danger" name="student_document_delete" id="student_document_delete_button" value="<?php echo $data['student_id']; ?>" onclick="deleteStudentDocument(this.value)">Delete</button>
+
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 						
 					</div>
 					
 				</div>
-
-			</form>
+				
+			</div>
 			
 		</div>
 
@@ -985,5 +979,32 @@
 		});
 
 	});
+
+</script>
+
+<script type="text/javascript">
+
+	function deleteStudentDocument(student_id){
+
+		var student_id = student_id;
+
+		var xmlhttp = new XMLHttpRequest();
+
+		xmlhttp.onreadystatechange = function(){
+
+			if (this.readyState == 4 && this.status == 200) {
+
+				$('#studentDocumentDeleteModal-' + student_id).modal('hide');
+				window.location.reload();
+				$('#studentEditModal-' + student_id).modal('show');
+
+			}
+
+		};
+
+		xmlhttp.open("GET", "Student_Document_Delete_action.php?student_id=" + student_id , true);
+		xmlhttp.send();
+		
+	}
 
 </script>
