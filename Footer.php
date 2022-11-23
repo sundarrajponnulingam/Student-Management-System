@@ -996,7 +996,6 @@
 
 				$('#studentDocumentDeleteModal-' + student_id).modal('hide');
 				window.location.reload();
-				$('#studentEditModal-' + student_id).modal('show');
 
 			}
 

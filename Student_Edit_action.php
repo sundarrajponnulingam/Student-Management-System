@@ -17,12 +17,13 @@
 		$student_address = trim($_POST['student_address']);
 		$student_fees_status = $_POST['student_fees_status-'.$student_id];
 		$student_document = isset($_FILES['student_document']) ? $_FILES['student_document']['name'] : NULL;
-
-		$temp_student_document = explode(".", $student_document);
-		$student_document = str_replace("'", "", current($temp_student_document)).round(microtime(true)).'.'.end($temp_student_document);
 		
-		if (isset($student_document)) {
+		if (isset($student_document) && !empty($student_document)) {
 			
+			$temp_student_document = explode(".", $student_document);
+			
+			$student_document = str_replace("'", "", current($temp_student_document)).round(microtime(true)).'.'.end($temp_student_document);
+
 			$file_path = "documents/".$student_document;
 			move_uploaded_file($_FILES['student_document']['tmp_name'], $file_path);
 
