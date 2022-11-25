@@ -14,9 +14,9 @@
 
 		$page = (isset($_GET['page']) && !empty($_GET['page'])) ? $_GET['page'] : 1 ;	
 
-		if (isset($_REQUEST['search']) || isset($_GET['search'])) {
+		if (isset($_GET['search'])) {
 
-			$search = $_REQUEST['search'];
+			$search = trim($_GET['search']);
 			
 			$where = " WHERE student_id LIKE '%$search%' 
 					OR student_name LIKE '%$search%' 
@@ -55,38 +55,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Students</title>
 	</head>
-
-		<script type="text/javascript">
-		
-			$(document).ready(function(){
-
-				$('#search').click(function(){
-
-					var search = $('#search_text').val();
-
-					$.ajax({
-
-						type : 'GET',
-						url : 'Students.php',
-						data :{
-
-							search: search
-
-						},
-						success : function(response){
-
-						},
-						failure : function (response){
-
-						}
-
-					});
-
-				});
-
-			});
-
-		</script>
 
 		<script type="text/javascript">
 
@@ -208,7 +176,7 @@
 								
 							<li>
 							 	
-							 	<a class="page-link" href="Students.php?page=<?php echo $page-1 ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : '';?>">Previous</a>
+							 	<a class="page-link" href="Students.php?page=<?php echo $page-1 ; echo (isset($_GET['search']) && !empty($_GET['search'])) ? '&search='.$_GET['search'] : '';?>">Previous</a>
 
 							</li>		
 
@@ -221,7 +189,7 @@
 						?>                                                                                                  
 							<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
 
-								<a class="page-link" href="Students.php?page=<?php echo $i ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : ''; ?>">
+								<a class="page-link" href="Students.php?page=<?php echo $i ; echo (isset($_GET['search']) && !empty($_GET['search'])) ? '&search='.$_GET['search'] : ''; ?>">
 
 										<?php echo $i; ?>
 
@@ -237,7 +205,7 @@
 								
 							<li>
 							 	
-							 	<a class="page-link" href="Students.php?page=<?php echo $page+1 ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : '';?>">Next</a>
+							 	<a class="page-link" href="Students.php?page=<?php echo $page+1 ; echo (isset($_GET['search']) && !empty($_GET['search'])) ? '&search='.$_GET['search'] : '';?>">Next</a>
 
 							</li>		
 
