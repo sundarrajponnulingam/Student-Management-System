@@ -65,70 +65,6 @@
 	 	<title>Dashboard</title>
 	</head>
 
-	<script type="text/javascript">
-		
-		$(document).ready(function(){
-
-			$("#search").click(function(){
-
-				var search = $("#search_text").val();
-
-				$.ajax({
-
-					type: 'GET',
-					url: 'Dashboard.php',
-					data: {
-
-						search : search
-
-					},
-					success: function(response){
-
-					},
-					failure: function(response){
-						
-					}
-
-				});
-
-			});
-
-		});
-
-	</script>
-
-	<script type="text/javascript">
-		
-		$(document).ready(function(){
-
-			$("#feesStatus-dropdown").change(function(){
-
-				var fees_status = $(this).val();
-
-				$.ajax({
-
-					type: 'POST',
-					url: 'Dashboard.php',
-					data: {
-
-						fees_status: fees_status
-
-					},
-					success: function(response){
-						
-					},
-					failure:function(response){
-
-					}
-
-				});
-
-			});
-
-		});
-
-	</script>
-
 	<body>
 
 	 	<div class="container mt-5 dashboard">
@@ -293,9 +229,9 @@
 								</td>
 								<td class="d-flex justify-content-between">
 									
-									<a href="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#studentViewModal-<?php echo $data['student_id'] ?>">View</a>
-									<a href="" class="btn btn-warning" data-bs-toggle="modal"data-bs-target="#studentEditModal-<?php echo $data['student_id'] ?>">Edit</a>
-									<a href="" class="btn btn-danger" data-bs-toggle="modal"data-bs-target="#studentDeleteModal-<?php echo $data['student_id'] ?>">Delete</a>
+									<a href="" data-bs-toggle="modal" data-bs-target="#studentViewModal-<?php echo $data['student_id'] ?>"><img src="./assets/icons/View.svg" width="25" height="25"></a>
+									<a href="" data-bs-toggle="modal"data-bs-target="#studentEditModal-<?php echo $data['student_id'] ?>"><img src="./assets/icons/Edit.svg" width="25" height="25"></a>
+									<a href="" data-bs-toggle="modal"data-bs-target="#studentDeleteModal-<?php echo $data['student_id'] ?>"><img src="./assets/icons/Delete.svg" width="25" height="25"></a>
 
 								</td>
 								
