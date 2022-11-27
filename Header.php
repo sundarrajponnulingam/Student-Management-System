@@ -23,7 +23,7 @@
 							
 					<a href="Logout_action.php" class="btn btn-danger"> 
 
-						Logout  &nbsp
+						Logout  &nbsp&nbsp
 
 						<img src="./assets/icons/Logout.svg" width="30" height="30">
 
