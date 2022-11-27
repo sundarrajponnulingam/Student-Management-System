@@ -1,17 +1,6 @@
 /*Custom CSS*/
 
-.login input{
-
-	border: none;
-	border-radius: 5px;
-	padding: 10px;
-	outline: none;
-	background-color: #f1f1f1;
-	width: 65%;
-
-}
-
-.signup input{
+.login input, .signup input{
 
 	border: none;
 	border-radius: 5px;

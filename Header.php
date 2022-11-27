@@ -21,7 +21,13 @@
 
 				<div class="float-end logout">
 							
-					<a href="Logout_action.php" class="btn btn-danger"> Logout </a>
+					<a href="Logout_action.php" class="btn btn-danger"> 
+
+						Logout  &nbsp
+
+						<img src="./assets/icons/Logout.svg" width="30" height="30">
+
+					</a>
 					
 				</div>
 				

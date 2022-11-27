@@ -3,11 +3,9 @@
 	ob_start();
 	
 	require 'DB_Connect.php';
-
-	if (isset($_POST['student_delete'])) {
 		
-		$student_id = $_POST['student_id'];
-		$student_guardian_id = $_POST['student_guardian_id'];
+		$student_id = $_GET['student_id'];
+		$student_guardian_id = $_GET['student_guardian_id'];
 
 		$sql = " DELETE FROM table_students WHERE student_id = '$student_id' ";
 
@@ -79,10 +77,8 @@
 
 								if ($result) {
 									
-									ob_end_clean();
-
-									header("Location:Students.php");
-
+									return true;
+									
 								}
 
 							}
@@ -98,7 +94,5 @@
 		}
 
 		mysqli_close($connection);
-
-	}
 
  ?>

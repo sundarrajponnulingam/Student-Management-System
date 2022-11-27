@@ -564,48 +564,44 @@
 		</div>
 
 		<div class="modal fade" id="studentDeleteModal-<?php echo $data['student_id'] ?>" tabindex="-1" aria-labelledby="studentDeleteModalLabel" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
-
-			<form method="POST" action="Student_Delete_action.php">
 				
-				<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-dialog modal-dialog-centered">
 
-					<div class="modal-content">	
+				<div class="modal-content">	
 
-						<div class="modal-header">
+					<div class="modal-header">
 
-							<h5 class="modal-title d-flex justify-content-between" id="studentDeleteModalLabel">
-								
-								<img src="./assets/icons/Exclamation.svg" width="30" height="30">&nbsp &nbsp<span>Warning</span>
-
-							</h5>
-
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						<h5 class="modal-title d-flex justify-content-between" id="studentDeleteModalLabel">
 							
-						</div>
+							<img src="./assets/icons/Exclamation.svg" width="30" height="30">&nbsp &nbsp<span>Warning</span>
 
-						<div class="modal-body">
+						</h5>
 
-							<input type="hidden" name="student_id" value="<?php echo $data['student_id']; ?>">
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						
+					</div>
 
-							<input type="hidden" name="student_guardian_id" value="<?php echo $data['student_guardian_id']; ?> ">
+					<div class="modal-body">
 
-							<span>Are you sure want to Delete</span>&nbsp<strong><?php echo $data['student_name']; ?></strong>&nbsp<img src="./assets/icons/Question.svg" width="30" height="30" class="mb-2">
-							
-						</div>
+						<input type="hidden" name="student_id" value="<?php echo $data['student_id']; ?>" id="student_id">
 
-						<div class="modal-footer">
+						<input type="hidden" name="student_guardian_id" value="<?php echo $data['student_guardian_id']; ?> " id="student_guardian_id">
 
-							<button type="submit" class="btn btn-danger" name="student_delete">Delete</button>
+						<span>Are you sure want to Delete</span>&nbsp<strong><?php echo $data['student_name']; ?></strong>&nbsp<img src="./assets/icons/Question.svg" width="30" height="30" class="mb-2">
+						
+					</div>
 
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-							
-						</div>
+					<div class="modal-footer">
+
+						<button type="submit" class="btn btn-danger" name="student_delete" value="<?php echo $data['student_id'].','.$data['student_guardian_id']; ?>" onclick="deleteStudent(this.value)">Delete</button>
+
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 						
 					</div>
 					
 				</div>
-
-			</form>
+				
+			</div>
 			
 		</div>
 <?php 
@@ -1004,6 +1000,35 @@
 		xmlhttp.open("GET", "Student_Document_Delete_action.php?student_id=" + student_id , true);
 		xmlhttp.send();
 		
+	}
+
+</script>
+
+<script type="text/javascript">
+	
+	function deleteStudent(datas){
+
+		data = datas.split(',');
+
+		var student_id = data[0];
+		var student_guardian_id = data[1];
+
+		var xmlhttp = new XMLHttpRequest();
+
+		xmlhttp.onreadystatechange = function(){
+
+			if (this.readyState == 4 && this.status == 200) {
+
+				$('#studentDeleteModal-' + student_id).modal('hide');
+				window.location.reload();
+
+			}
+
+		};
+
+		xmlhttp.open("GET", "Student_Delete_action.php?student_id=" + student_id +"&student_guardian_id= " + student_guardian_id, true);
+		xmlhttp.send();
+
 	}
 
 </script>
