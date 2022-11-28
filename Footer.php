@@ -1046,6 +1046,24 @@
 		var student_fees_status = $("input[name='student_fees_status-" + student_id + "']:checked").val();
 		var student_document = $('#student_edit_student_document-' + student_id).val();
 
+		var xmlhttp = new XMLHttpRequest();
+
+		xmlhttp.open("POST", "Student_Edit_action.php", true)
+
+		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+		xmlhttp.onreadystatechange = function(){
+
+			if (this.readyState == 4 && this.status == 200) {
+
+				$('#studentEditModal-' + student_id).modal('hide');
+				window.location.reload();
+
+			}
+
+		};
+
+		xmlhttp.send("student_id="+student_id+"&parent_id="+parent_id+"&student_name="+student_name+"&student_class="+student_class+"&student_section="+student_section+"&student_date_of_birth="+student_date_of_birth+"&student_father_name="+student_father_name+"&student_mother_name="+student_mother_name+"&student_address="+student_address+"&student_fees_status="+student_fees_status+"&student_document="+student_document);
 
 	}                   
 
