@@ -132,7 +132,7 @@
 							<td><?php echo $data['parents_students_name']; ?></td>
 							<td class="d-flex justify-content-center">
 								
-								<a href="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#parentViewModal-<?php echo $data['parents_guardian_id']; ?>">View</a>
+								<a href="" data-bs-toggle="modal" data-bs-target="#parentViewModal-<?php echo $data['parents_guardian_id']; ?>"><img src="./assets/icons/View.svg" width="25" height="25"></a>
 
 							</td>
 							

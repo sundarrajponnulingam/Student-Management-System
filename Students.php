@@ -34,7 +34,7 @@
 		$limit = " LIMIT $page_first_result, 5 ";
 
 		$sql = " SELECT student_id, student_name, student_class, student_section
-			FROM table_students $where ORDER BY student_id ASC ";
+			FROM table_students $where ORDER BY student_id DESC ";
 
 		$result = mysqli_query($connection, $sql);
 	
@@ -42,7 +42,7 @@
 		$total_pages = ceil($total_rows / 5);
 
 		$sql = " SELECT student_id, student_name, student_class, student_section
-			FROM table_students $where ORDER BY student_id ASC $limit ";
+			FROM table_students $where ORDER BY student_id DESC $limit ";
 
 		$result = mysqli_query($connection, $sql);
 
