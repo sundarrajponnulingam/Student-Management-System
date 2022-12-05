@@ -4,7 +4,7 @@
 
  ?>
 
-<div class="offcanvas offcanvas-start" id="menu" aria-labelledby="menuLabel" tabindex="-1">
+<div class="offcanvas offcanvas-start" data-bs-backdrop="false" data-bs-scroll="true" id="menu" aria-labelledby="menuLabel" tabindex="-1">
 
 	<div class="offcanvas-header">
 
@@ -25,9 +25,9 @@
 
 				<a href="Students.php" class="list-group-item action <?php echo $page_variable == 'Students' ? 'active' : '';?>" aria-current="true">Students</a>
 
-				<a href="Parents.php" class="list-group-item action <?php echo $page_variable == 'Parents' ? 'active' : '';?>" aria-current="true">Parents</a>
-
 				<a href="Fees.php" class="list-group-item action <?php echo $page_variable == 'Fees' ? 'active' : '';?>" aria-current="true">Fees</a>
+
+				<a href="Parents.php" class="list-group-item action <?php echo $page_variable == 'Parents' ? 'active' : '';?>" aria-current="true">Parents</a>
 
 			</div>
 
@@ -967,20 +967,6 @@
 			$('#no_data_found').modal('hide');
 
 			window.history.back();
-
-		});
-
-	});
-
-</script>
-
-<script type="text/javascript">
-	
-	$(document).ready(function(){
-
-		$('.list-group-item').click(function(){
-
-			$('.offcanvas').offcanvas('hide');
 
 		});
 

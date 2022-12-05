@@ -101,8 +101,8 @@
 							$parents_students_name = $data['parents_students_name'];
 
 							$sql = "UPDATE table_parents SET 
-															parents_students_id = CONCAT_WS(',', '$parents_students_id', '$student_id'),
-															parents_students_name = CONCAT_WS(',', '$parents_students_name', '$student_name')
+															parents_students_id = CONCAT_WS(', ', '$parents_students_id', '$student_id'),
+															parents_students_name = CONCAT_WS(', ', '$parents_students_name', '$student_name')
 
 														WHERE parents_guardian_id = '$parents_guardian_id'";
 														

@@ -17,7 +17,16 @@
 
 			$student_document = $data['student_document'];
 
-			$delete_student_document = unlink("./documents/".$student_document);
+			if (isset($student_document) && !empty($student_document)) {
+			
+				$delete_student_document = unlink("./documents/".$student_document);
+
+			}
+			else{
+
+				$delete_student_document = true;
+
+			}			
 
 			if ($delete_student_document) {
 			
@@ -90,8 +99,37 @@
 										$result = mysqli_query($connection, $sql);
 
 										if ($result) {
+
+											$sql = "SELECT parents_students_name FROM table_parents WHERE parents_guardian_id = '$student_guardian_id' ";
+
+											$result = mysqli_query($connection, $sql);
+
+											if ($result) {
 											
-											return true;
+												$data = mysqli_fetch_assoc($result);
+
+												$student_ids = $data['parents_students_id'];
+
+												if (empty($student_ids)) {
+													
+													$sql = "DELETE FROM table_parents WHERE parents_guardian_id = '$student_guardian_id'";
+
+													$result = mysqli_query($connection, $sql);
+
+													if ($result) {
+														
+														return true;
+
+													}
+
+												}
+												else{
+
+													return true;
+
+												}
+
+											}
 											
 										}
 

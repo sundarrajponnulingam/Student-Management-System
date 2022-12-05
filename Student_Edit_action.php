@@ -100,20 +100,36 @@
 
 				if ($update) {
 					
-					$student_name = implode(',', $student_names);
+					$student_name = implode(', ', $student_names);
 					
 					$sql = "UPDATE table_parents SET 
-													parents_students_name = '$student_name'
+													parents_students_name = '$student_name',
+													parents_address = '$student_address'
 													
 												WHERE parents_guardian_id = '$parent_id' ";
 
 					$result = mysqli_query($connection, $sql);
 
 					if ($result) {
-						
-						ob_end_clean();
 
-						header("Location:".$page_url);						
+						foreach ($student_ids as $student_id) {
+							
+							$sql = "UPDATE table_students SET 
+															student_address = '$student_address'
+
+														WHERE student_id = $student_id ";
+
+							$result = mysqli_query($connection, $sql);
+
+						}
+
+						if ($result) {
+								
+							ob_end_clean();
+
+							header("Location:".$page_url);
+
+						}						
 
 					}
 

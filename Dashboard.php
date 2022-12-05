@@ -26,9 +26,9 @@
 
 		$page = (isset($_GET['page']) && !empty($_GET['page'])) ? $_GET['page'] : 1;
 
-		if (isset($_REQUEST['search']) && !empty($_REQUEST['search']) || isset($_GET['search']) && !empty($_GET['search'])) {	
+		if (isset($_GET['search']) && !empty($_GET['search'])) {	
 			
-			$search = $_REQUEST['search'];
+			$search = $_GET['search'];
 			
 			$where = " WHERE student_id LIKE '%$search%' 
 					OR student_name LIKE '%$search%' 
@@ -64,6 +64,20 @@
 	 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	 	<title>Dashboard</title>
 	</head>
+
+		<script type="text/javascript">
+
+			$(document).ready(function(){
+
+				<?php if (isset($_GET['search']) && mysqli_num_rows($result) == 0) { ?>
+
+					$("#no_data_found").modal('show');
+
+				<?php } ?>
+
+			});
+
+		</script>
 
 	<body>
 
@@ -162,7 +176,7 @@
 
 			<?php if (mysqli_num_rows($result) >=1 ) { ?>
 
-				<div class="container mt-5" id="search_result" <?php echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '' : 'style="display: none;"' ?>>
+				<div class="container" id="search_result" <?php echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '' : 'style="display: none;"' ?>>
 				
 					<table class="table table-bordered table-hover text-center">
 

@@ -65,7 +65,7 @@
 
 			$(document).ready(function(){
 
-				<?php if (mysqli_num_rows($result) == 0) { ?>
+				<?php if (isset($_GET['search']) && mysqli_num_rows($result) == 0) { ?>
 
 					$("#no_data_found").modal('show');
 
