@@ -27,6 +27,8 @@
 
 		}
 
+		$page_url = $_POST['page_url'];
+
 		$sql = "INSERT INTO table_students (
 
 												student_name,
@@ -73,7 +75,9 @@
 
 				$sql = "SELECT COUNT(parents_guardian_id),parents_guardian_id 
 							FROM table_parents 
+
 							WHERE parents_father_name = '$student_father_name' 
+
 							AND parents_mother_name = '$student_mother_name'";
 
 				$result = mysqli_query($connection, $sql);
@@ -97,12 +101,14 @@
 
 							$data = mysqli_fetch_assoc($result);
 							
-							$parents_students_id = $data['parents_students_id'];
-							$parents_students_name = $data['parents_students_name'];
+							$parents_students_ids = $data['parents_students_id'];
+							$parents_students_names = $data['parents_students_name'];
 
 							$sql = "UPDATE table_parents SET 
-															parents_students_id = CONCAT_WS(', ', '$parents_students_id', '$student_id'),
-															parents_students_name = CONCAT_WS(', ', '$parents_students_name', '$student_name')
+															parents_students_id = CONCAT_WS(', ', '$parents_students_ids', '$student_id'),
+															parents_students_name = CONCAT_WS(', ', '$parents_students_names', '$student_name'),
+
+															parents_address = '$student_address'
 
 														WHERE parents_guardian_id = '$parents_guardian_id'";
 														
@@ -117,10 +123,27 @@
 								$result = mysqli_query($connection, $sql);
 
 								if ($result) {
-								
-									ob_end_clean();
 
-									header("Location:Students.php");
+									$parents_students_ids = explode(",", $parents_students_ids);
+
+									foreach ($parents_students_ids as $parents_students_id) {
+										
+										$sql = "UPDATE table_students SET 
+																		student_address = '$student_address'
+
+																	WHERE student_id = $parents_students_id ";
+
+										$result = mysqli_query($connection, $sql);
+
+									}
+
+									if ($result) {
+									
+										ob_end_clean();
+
+										header("Location:".$page_url);
+
+									}
 
 								}
 
@@ -176,7 +199,7 @@
 									
 									ob_end_clean();
 
-									header("Location:Students.php");
+									header("Location:".$page_url);
 
 								}	
 

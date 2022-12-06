@@ -40,5 +40,6 @@
 
 		}
 
+	mysqli_close($connection);
 
  ?>

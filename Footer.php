@@ -638,6 +638,8 @@
 
 				<div class="modal-body">
 
+					<input type="hidden" name="page_url" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
+
 					<div class="row mb-3">
 
 						<label class="col-form-label col-md-4">Student Name</label>
