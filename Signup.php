@@ -16,7 +16,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Sign Up</title>
 </head>
-<body style="background-image: url('./assets/images/Background.jpg');">
+<body style="background-image: url('./assets/images/Background.jpg'); background-size: 1375px 720px;">
 
 	<div class="container mt-5 signup">
 		

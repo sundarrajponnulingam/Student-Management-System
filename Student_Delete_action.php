@@ -100,7 +100,7 @@
 
 										if ($result) {
 
-											$sql = "SELECT parents_students_name FROM table_parents WHERE parents_guardian_id = '$student_guardian_id' ";
+											$sql = "SELECT parents_students_id FROM table_parents WHERE parents_guardian_id = '$student_guardian_id' ";
 
 											$result = mysqli_query($connection, $sql);
 

@@ -105,8 +105,11 @@
 						$student_name = implode(', ', $student_names);
 						
 						$sql = "UPDATE table_parents SET 
+
 														parents_students_name = '$student_name',
-														parents_address = '$student_address'
+														parents_address = '$student_address',
+														parents_father_name = '$student_father_name',
+														parents_mother_name = '$student_mother_name'
 														
 													WHERE parents_guardian_id = '$parent_id' ";
 
@@ -117,7 +120,10 @@
 							foreach ($student_ids as $student_id) {
 								
 								$sql = "UPDATE table_students SET 
-																student_address = '$student_address'
+
+																student_address = '$student_address',
+																student_father_name = '$student_father_name',
+																student_mother_name = '$student_mother_name'
 
 															WHERE student_id = $student_id ";
 
