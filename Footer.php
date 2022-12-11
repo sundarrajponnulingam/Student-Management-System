@@ -4,7 +4,7 @@
 
  ?>
 
-<div class="offcanvas offcanvas-start" data-bs-backdrop="false" data-bs-scroll="true" id="menu" aria-labelledby="menuLabel" tabindex="-1">
+<div class="offcanvas offcanvas-start" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="true" id="menu" aria-labelledby="menuLabel" tabindex="-1">
 
 	<div class="offcanvas-header">
 
@@ -959,6 +959,34 @@
 <!-- <script type="text/javascript" src="./assets/Popper/popper.min.js"></script> -->
 <script type="text/javascript" src="./assets/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+
+		$(".list-group-item").click(function(){
+
+			$('.offcanvas').hide();
+
+		});
+
+	});
+
+</script>
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+
+		$("#menuBars").click(function(){
+
+			$('.offcanvas').show();
+
+		});
+
+	});
+
+</script>
 
 <script type="text/javascript">
 	

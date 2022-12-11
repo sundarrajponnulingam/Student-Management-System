@@ -9,7 +9,7 @@
 			
 			<div class="container-fluid">
 
-				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu" aria-controls="menu">
+				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu" aria-controls="menu" id="menuBars">
 					
 					<span class="navbar-toggler-icon">
 						

@@ -10,7 +10,7 @@
 		require 'Header.php';
 		require 'Footer.php';
 
-		$where = "";
+		$where = " WHERE 1";
 		$limit = "";
 
 		$sql = "SELECT * FROM table_students";
@@ -26,7 +26,7 @@
 
 			$search = trim($_GET['search']);
 			
-			$where = " WHERE student_id LIKE '%$search%' 
+			$where .= " AND student_id LIKE '%$search%' 
 					OR student_name LIKE '%$search%' 
 					OR student_class LIKE '%$search%' 
 					OR student_section LIKE '%$search%' 
@@ -34,6 +34,14 @@
 					OR student_father_name LIKE '%$search%' 
 					OR student_mother_name LIKE '%$search%' 
 					OR student_guardian_id LIKE '%$search%' ";
+
+		}
+
+		if (isset($_GET['fees_status'])) {                                                                                                                                           
+
+			$student_fees_status = $_GET['fees_status'];
+		
+			$where .= " AND student_fees_status = '$student_fees_status'";
 
 		}
 
@@ -49,7 +57,6 @@
 		$total_pages = ceil($total_rows / 5);
 
 		$sql = " SELECT student_id, student_name, student_class, student_section, student_fees_status FROM table_students $where ORDER BY student_id ASC $limit ";
-
 		$result = mysqli_query($connection, $sql);
 
 	 ?>
@@ -97,6 +104,19 @@
 
 				</form>
 
+			</div>
+
+			<div class="dropdown float-end">
+
+				<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded = "false">Fees Status</button>
+
+				<ul class="dropdown-menu">
+					
+					<li><a class="dropdown-item" href="Fees.php?fees_status=1">Paid</a></li>
+					<li><a class="dropdown-item" href="Fees.php?fees_status=0">Not Paid</a></li>
+
+				</ul>
+				
 			</div>
 
 		</div>
@@ -196,7 +216,7 @@
 			 					
 			 				<li>
 			 				 	
-			 				 	<a class="page-link" href="Fees.php?page=<?php echo $page-1 ; echo (isset($_GET['search']) && !empty($_GET['search'])) ? '&search='.$_GET['search'] : '';?>">Previous</a>
+			 				 	<a class="page-link" href="Fees.php?page=<?php echo $page-1 ; echo (isset($_GET['search']) && !empty($_GET['search'])) ? '&search='.$_GET['search'] : '';  echo (isset($_GET['fees_status']) && !empty($_GET['fees_status'])) ? '&fees_status='.$_GET['fees_status'] : '';?>">Previous</a>
 
 			 				</li>		
 
@@ -210,7 +230,7 @@
 			 				
 			 				<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
 
-			 					<a class="page-link" href="Fees.php?page=<?php echo $i; echo (isset($_GET['search']) && !empty($_GET['search'])) ? '&search='.$_GET['search'] : '';?>">
+			 					<a class="page-link" href="Fees.php?page=<?php echo $i; echo (isset($_GET['search']) && !empty($_GET['search'])) ? '&search='.$_GET['search'] : ''; echo (isset($_GET['fees_status']) && !empty($_GET['fees_status'])) ? '&fees_status='.$_GET['fees_status'] : '';?>">
 
 			 							<?php echo $i; ?>
 
@@ -226,7 +246,7 @@
 								
 							<li>
 							 	
-							 	<a class="page-link" href="Fees.php?page=<?php echo $page+1 ; echo (isset($_GET['search']) && !empty($_GET['search'])) ? '&search='.$_GET['search'] : '';?>">Next</a>
+							 	<a class="page-link" href="Fees.php?page=<?php echo $page+1 ; echo (isset($_GET['search']) && !empty($_GET['search'])) ? '&search='.$_GET['search'] : ''; echo (isset($_GET['fees_status']) && !empty($_GET['fees_status'])) ? '&fees_status='.$_GET['fees_status'] : '';?>">Next</a>
 
 							</li>		
 
@@ -242,8 +262,34 @@
 		 	
 		</div>
 	 
-	 </body>
-	 </html>
+	</body>
+	</html>
+
+	<script type="text/javascript">
+		
+		function fliterByFeesStatus(feesStatus){
+
+			var feesStatus = feesStatus;
+
+			var xmlhttp = new XMLHttpRequest();
+
+			xmlhttp.onreadystatechange = function(){
+
+				if (this.readyState == 4 && this.status == 200) {
+
+					window.location.reload();
+
+				}
+
+			};
+
+			xmlhttp.open("GET", "Fees.php?fees_status=" + feesStatus, true);
+			xmlhttp.send();
+
+		}
+
+	</script>
+
 	
 <?php 
 
