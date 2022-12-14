@@ -22,7 +22,7 @@
 
 		$page = (isset($_GET['page']) && !empty($_GET['page'])) ? $_GET['page'] : 1 ;	
 
-		if (isset($_GET['search'])) {
+		if (isset($_GET['search']) && !empty($_GET['search'])) {
 
 			$search = trim($_GET['search']);
 			
@@ -40,9 +40,18 @@
 		if (isset($_GET['fees_status'])) {                                                                                                                                           
 
 			$student_fees_status = $_GET['fees_status'];
-		
-			$where .= " AND student_fees_status = '$student_fees_status'";
 
+			if ($student_fees_status == 'Paid') {
+				
+				$where .= " HAVING student_fees_status = '1'";
+
+			}
+			else{
+
+				$where .= " HAVING student_fees_status = '0'";
+
+			}
+		
 		}
 
 		$page_first_result = ($page-1) * 5;
@@ -88,7 +97,7 @@
 
 			<div class="row mb-4 float-start">
 
-				<form method="GET">
+				<form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 					
 					<div class="d-flex justify-content-between">
 					
@@ -112,8 +121,8 @@
 
 				<ul class="dropdown-menu">
 					
-					<li><a class="dropdown-item" href="Fees.php?fees_status=1">Paid</a></li>
-					<li><a class="dropdown-item" href="Fees.php?fees_status=0">Not Paid</a></li>
+					<li><a class="dropdown-item" href="Fees.php?<?php echo (isset($_GET['search']) && !empty($_GET['search'])) ? 'search='.$_GET['search'].'&fees_status=Paid' : 'fees_status=Paid'; ?>">Paid</a></li>
+					<li><a class="dropdown-item" href="Fees.php?<?php echo (isset($_GET['search']) && !empty($_GET['search'])) ? 'search='.$_GET['search'].'&fees_status=Not Paid' : 'fees_status=Not Paid'; ?>">Not Paid</a></li>
 
 				</ul>
 				

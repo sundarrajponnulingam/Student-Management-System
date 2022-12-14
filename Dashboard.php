@@ -135,7 +135,7 @@
 
 			<div class="row mt-5">
 				
-				<form method="GET">
+				<form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 					
 					<div class="d-flex justify-content-between">
 					

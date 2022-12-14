@@ -76,7 +76,7 @@
 
 			<div class="row mb-4 float-start">
 
-				<form method="GET">
+				<form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 					
 					<div class="d-flex justify-content-between">
 					
