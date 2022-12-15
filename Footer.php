@@ -371,7 +371,7 @@
 
 									<div class="col-md-8">
 										
-										<input type="text" class="form-control" name="student_name" value="<?php echo $data['student_name']; ?>" id="student_edit_student_name-<?php echo $data['student_id']; ?>">
+										<input type="text" class="form-control" name="student_name" value="<?php echo $data['student_name']; ?>" id="student_edit_student_name-<?php echo $data['student_id']; ?>" required>
 
 									</div>
 									
@@ -383,7 +383,7 @@
 
 									<div class="col-md-8">
 										
-										<input type="text" class="form-control" name="student_class" value="<?php echo $data['student_class']; ?>" id="student_edit_student_class-<?php echo $data['student_id']; ?>">
+										<input type="text" class="form-control" name="student_class" value="<?php echo $data['student_class']; ?>" id="student_edit_student_class-<?php echo $data['student_id']; ?>" required>
 
 									</div>
 
@@ -395,7 +395,7 @@
 
 									<div class="col-md-8">
 										
-										<input type="text" class="form-control" name="student_section" value="<?php echo $data['student_section']; ?>" id="student_edit_student_section-<?php echo $data['student_id']; ?>">
+										<input type="text" class="form-control" name="student_section" value="<?php echo $data['student_section']; ?>" id="student_edit_student_section-<?php echo $data['student_id']; ?>" required>
 										
 									</div>
 
@@ -419,7 +419,7 @@
 
 									<div class="col-md-8">
 
-										<input type="text" class="form-control" name="student_father_name" value="<?php echo $data['student_father_name']; ?>" id="student_edit_student_father_name-<?php echo $data['student_id']; ?>">
+										<input type="text" class="form-control" name="student_father_name" value="<?php echo $data['student_father_name']; ?>" id="student_edit_student_father_name-<?php echo $data['student_id']; ?>" required>
 										
 									</div>
 									
@@ -431,7 +431,7 @@
 
 									<div class="col-md-8">
 
-										<input type="text" class="form-control" name="student_mother_name" value="<?php echo $data['student_mother_name']; ?>" id="student_edit_student_mother_name-<?php echo $data['student_id']; ?>">
+										<input type="text" class="form-control" name="student_mother_name" value="<?php echo $data['student_mother_name']; ?>" id="student_edit_student_mother_name-<?php echo $data['student_id']; ?>" required>
 										
 									</div> 
 									
@@ -457,7 +457,7 @@
 
 										<div class="form-check form-switch">
 											
-											<input type="radio" class="form-check-input" role="switch" value="1" name="student_fees_status-<?php echo $data['student_id']; ?>" <?php echo ($data['student_fees_status'] == 1) ? 'checked' : ''; ?> id="paid-<?php echo $data['student_id']; ?>">
+											<input type="radio" class="form-check-input" role="switch" value="1" name="student_fees_status-<?php echo $data['student_id']; ?>" <?php echo ($data['student_fees_status'] == 1) ? 'checked' : ''; ?> id="paid-<?php echo $data['student_id']; ?>" required>
 
 											<label class="form-check-label" for="paid-<?php echo $data['student_id']; ?>">Paid</label>	
 
@@ -465,7 +465,7 @@
 
 										<div class="form-check form-switch">
 											
-											<input type="radio" class="form-check-input" role="switch" value="0" name="student_fees_status-<?php echo $data['student_id']; ?>" <?php echo ($data['student_fees_status'] < 1) ? 'checked' : ''; ?> id="not_paid-<?php echo $data['student_id']; ?>">
+											<input type="radio" class="form-check-input" role="switch" value="0" name="student_fees_status-<?php echo $data['student_id']; ?>" <?php echo ($data['student_fees_status'] < 1) ? 'checked' : ''; ?> id="not_paid-<?php echo $data['student_id']; ?>" required>
 
 											<label class="form-check-label" for="not_paid-<?php echo $data['student_id']; ?>">Not Paid</label>
 
@@ -646,7 +646,7 @@
 
 						<div class="col-md-8">
 							
-							<input type="text" class="form-control" name="student_name">
+							<input type="text" class="form-control" name="student_name" required>
 
 						</div>
 						
@@ -658,7 +658,7 @@
 
 						<div class="col-md-8">
 							
-							<input type="text" class="form-control" name="student_class">
+							<input type="text" class="form-control" name="student_class" required>
 
 						</div>
 
@@ -670,7 +670,7 @@
 
 						<div class="col-md-8">
 							
-							<input type="text" class="form-control" name="student_section">
+							<input type="text" class="form-control" name="student_section" required>
 							
 						</div>
 
@@ -694,7 +694,7 @@
 
 						<div class="col-md-8">
 
-							<input type="text" class="form-control" name="student_father_name">
+							<input type="text" class="form-control" name="student_father_name" required>
 							
 						</div>
 						
@@ -706,7 +706,7 @@
 
 						<div class="col-md-8">
 
-							<input type="text" class="form-control" name="student_mother_name">
+							<input type="text" class="form-control" name="student_mother_name" required>
 							
 						</div>
 						
@@ -732,7 +732,7 @@
 
 							<div class="form-check form-switch">
 								
-								<input type="radio" class="form-check-input" role="switch" name="student_fees_status" value="1" id="paid">
+								<input type="radio" class="form-check-input" role="switch" name="student_fees_status" value="1" id="paid" required>
 
 								<label class="form-check-label" for="paid">Paid</label>	
 
@@ -740,7 +740,7 @@
 
 							<div class="form-check form-switch">
 								
-								<input type="radio" class="form-check-input" role="switch" name="student_fees_status" value="0" id="not_paid">
+								<input type="radio" class="form-check-input" role="switch" name="student_fees_status" value="0" id="not_paid" required>
 
 								<label class="form-check-label" for="not_paid">Not Paid</label>
 

@@ -42,7 +42,7 @@
 
 							<div class="col-6">
 
-								<input type="text" name="username">
+								<input type="text" name="username" required>
 
 							</div>
 
@@ -54,7 +54,7 @@
 
 							<div class="col-6">
 								
-								<input type="password" name="password">
+								<input type="password" name="password" required>
 
 							</div>
 
@@ -68,7 +68,7 @@
 
 						<div class="float-end">
 
-							<button type="submit" name="signup" class="btn btn-success">Sign Up</button>
+							<a href="Signup.php" class="btn btn-success">Sign Up</a>
 								
 						</div>
 
