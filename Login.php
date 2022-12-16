@@ -16,7 +16,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Login</title>
 	</head>
-	<body style="background-image: url('./assets/images/Background.jpg'); background-size: 1375px 720px;">
+	<body style="background-image: url('./assets/images/Background.jpg'); background-size: 1370px 770px;">
 
 		<div class="container mt-5 login">
 

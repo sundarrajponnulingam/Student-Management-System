@@ -142,9 +142,9 @@
 							<td><?php echo $data['student_section']; ?></td>
 							<td class="d-flex justify-content-between">
 								
-								<a href="" data-bs-toggle="modal" data-bs-target="#studentViewModal-<?php echo $data['student_id'] ?>"><img src="./assets/icons/View.svg" width="25" height="25"></a>
-								<a href="" data-bs-toggle="modal"data-bs-target="#studentEditModal-<?php echo $data['student_id'] ?>"><img src="./assets/icons/Edit.svg" width="25" height="25"></a>
-								<a href="" data-bs-toggle="modal" data-bs-target="#studentDeleteModal-<?php echo $data['student_id'] ?>"><img src="./assets/icons/Delete.svg" width="25" height="25"></a>
+								<span data-bs-toggle="modal" data-bs-target="#studentViewModal-<?php echo $data['student_id'] ?>"><span data-bs-toggle="tooltip" data-bs-placement="right" title="View"><img src="./assets/icons/View.svg" width="25" height="25"></span></span>
+								<span data-bs-toggle="modal"data-bs-target="#studentEditModal-<?php echo $data['student_id'] ?>"><span data-bs-toggle="tooltip" data-bs-placement="right" title="Edit"><img src="./assets/icons/Edit.svg" width="25" height="25"></span></span>
+								<span data-bs-toggle="modal" data-bs-target="#studentDeleteModal-<?php echo $data['student_id'] ?>"><span data-bs-toggle="tooltip" data-bs-placement="right" title="Delete"><img src="./assets/icons/Delete.svg" width="25" height="25"></span>
 
 							</td>
 							

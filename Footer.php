@@ -964,6 +964,19 @@
 	
 	$(document).ready(function(){
 
+		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+		var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		  return new bootstrap.Tooltip(tooltipTriggerEl)
+		})
+
+	});
+
+</script>
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+
 		$(".list-group-item").click(function(){
 
 			$('.offcanvas').hide();
@@ -1058,4 +1071,3 @@
 	}
 
 </script>
-

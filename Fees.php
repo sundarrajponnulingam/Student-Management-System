@@ -10,7 +10,7 @@
 		require 'Header.php';
 		require 'Footer.php';
 
-		$where = " WHERE 1";
+		$where = " WHERE 1 ";
 		$limit = "";
 
 		$sql = "SELECT * FROM table_students";
