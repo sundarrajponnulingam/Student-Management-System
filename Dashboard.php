@@ -10,7 +10,7 @@
 		require 'Header.php';
 		require 'Footer.php';
 
-		$where = "";
+		$where = "WHERE 1";
 		$limit = "";
 
 		$sql = " SELECT count(student_id) as student_count, 
@@ -30,7 +30,7 @@
 			
 			$search = $_GET['search'];
 			
-			$where = " WHERE student_id LIKE '%$search%' 
+			$where .= " AND student_id LIKE '%$search%' 
 					OR student_name LIKE '%$search%' 
 					OR student_class LIKE '%$search%' 
 					OR student_section LIKE '%$search%' 
@@ -38,6 +38,23 @@
 					OR student_father_name LIKE '%$search%' 
 					OR student_mother_name LIKE '%$search%' 
 					OR student_guardian_id LIKE '%$search%' ";
+		}
+
+		if (isset($_GET['fees_status'])) {                                                                                                                                           
+
+			$student_fees_status = $_GET['fees_status'];
+
+			if ($student_fees_status == 'Paid') {
+				
+				$where .= " HAVING student_fees_status = '1'";
+
+			}
+			else{
+
+				$where .= " HAVING student_fees_status = '0'";
+
+			}
+		
 		}
 
 		$page_first_result = ($page-1) * 5;
@@ -87,17 +104,17 @@
 				
 				<div class="col-md-6">
 
-						<a href="Students.php" class="text-decoration-none">
+						<a href="Students.php" class="text-decoration-none" style="color: #ffffff;">
 
 							<div class="card h-100">
-							
-								<img src="./assets/icons/Students.svg" class="card-img-top mt-2" width="100" height="100">
 
 								<div class="card-body">
 									
-									<h5 class="card-title">Students</h5>
+									<h5 class="card-title fs-3">Students</h5>
 
-									<p class="card-text mt-3">Total Number of Students <strong> <?php echo $data['student_count']; ?> </strong></p>
+									<img src="./assets/icons/Students.svg" class="card-img-top mt-2" width="75" height="75">
+
+									<p class="card-text mt-3 fs-5 text-center">Total Number of Students : <span> <?php echo $data['student_count']; ?> </span></p>
 									
 								</div>
 
@@ -109,19 +126,23 @@
 
 				<div class="col-md-6">
 
-					<a href="Fees.php" class="text-decoration-none">
+					<a href="Fees.php" class="text-decoration-none" style="color: #ffffff;">
 						
 						<div class="card h-100">
 
-							<img src="./assets/icons/Fees.svg" class="card-img-top mt-2" width="100" height="100">
-
 							<div class="card-body">
 								
-								<h5 class="card-title">Fees</h5>
+								<h5 class="card-title fs-3">Fees</h5>
 
-								<p class="card-text mt-3">Number of Students Paid <strong> <?php echo $data['paid_students']; ?> </strong></p>
+								<img src="./assets/icons/Fees.svg" class="card-img-top mt-2" width="75" height="75">
 
-								<p class="card-text">Number of Students Not Paid <strong> <?php echo $data['not_paid_students']; ?> </strong></p>
+								<div class="d-flex justify-content-between mt-3">
+									
+									<span class="card-text fs-5"> Paid : <span> <?php echo $data['paid_students']; ?> </span></span>
+
+									<span class="card-text fs-5" style="background-color: red;"> Not Paid : <span> <?php echo $data['not_paid_students']; ?> </span></span>
+
+								</div>
 
 							</div>
 
@@ -133,46 +154,51 @@
 
 			</div>
 
-			<div class="row mt-5">
+			<div class="container mt-4 d-flex justify-content-center">
 				
-				<form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+				<div class="row">
 					
-					<div class="d-flex justify-content-between">
-					
-						<input type="text" class="form-control" name="search" id="search_text" placeholder="Search Here">
-
-						<button type="submit" class="btn btn-light" id="search">
-
-							<img src="./assets/icons/Search.svg" width="30" height="30">
-							
-						</button>
-
-					</div>  
-
-				</form>
-
-				<!-- <form method="POST">
-					
-					<div class="dropdown" id="feesStatus-dropdown">
-
-						<button class="btn btn-secondary dropdown-toggle" type="button" id="feesStatus" data-bs-toggle="dropdown" aria-expanded="false">
-								
-							Fees Status
-
-						</button>
-
-						<ul class="dropdown-menu" aria-labelledby="feesStatus">
-							
-							<li><a class="dropdown-item" href="Dashboard.php" value="1" id="feesStatus-dropdown">Paid</a></li>
-							<li><a class="dropdown-item" href="Dashboard.php" value="0" id="feesStatus-dropdown">Not Paid</a></li>
-
-						</ul>
+					<form method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 						
-					</div>
+						<div class="d-flex justify-content-between">
+						
+							<input type="text" class="form-control" name="search" id="search_text" placeholder="Search Here">
 
-				</form> -->
+							<button type="submit" class="btn btn-light" id="search">
+
+								<img src="./assets/icons/Search.svg" width="30" height="30">
+								
+							</button>
+
+						</div>  
+
+					</form>
+
+				</div>
 
 			</div>
+
+			<?php if (isset($_GET['search']) && !empty($_GET['search']))  {
+			 ?>
+
+				<div class="dropdown float-end mb-3">
+
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded = "false">Fees Status</button>
+
+					<ul class="dropdown-menu">
+						
+						<li><a class="dropdown-item" href="Dashboard.php?<?php echo (isset($_GET['search']) && !empty($_GET['search'])) ? 'search='.$_GET['search'].'&fees_status=Paid' : 'fees_status=Paid'; ?>">Paid</a></li>
+						<li><a class="dropdown-item" href="Dashboard.php?<?php echo (isset($_GET['search']) && !empty($_GET['search'])) ? 'search='.$_GET['search'].'&fees_status=Not Paid' : 'fees_status=Not Paid'; ?>">Not Paid</a></li>
+
+					</ul>
+					
+				</div>
+
+			<?php 
+
+			}
+
+			 ?>
 
 			<?php if (mysqli_num_rows($result) >=1 ) { ?>
 
@@ -243,9 +269,35 @@
 								</td>
 								<td class="d-flex justify-content-between">
 									
-									<span data-bs-toggle="modal" data-bs-target="#studentViewModal-<?php echo $data['student_id'] ?>"><span data-bs-toggle="tooltip" data-bs-placement="right" title="View"><img src="./assets/icons/View.svg" width="25" height="25"></span></span>
-									<span data-bs-toggle="modal"data-bs-target="#studentEditModal-<?php echo $data['student_id'] ?>"><span data-bs-toggle="tooltip" data-bs-placement="right" title="Edit"><img src="./assets/icons/Edit.svg" width="25" height="25"></span></span>
-									<span data-bs-toggle="modal"data-bs-target="#studentDeleteModal-<?php echo $data['student_id'] ?>"><span data-bs-toggle="tooltip" data-bs-placement="right" title="Delete"><img src="./assets/icons/Delete.svg" width="25" height="25"></span></span>
+									<span data-bs-toggle="modal" data-bs-target="#studentViewModal-<?php echo $data['student_id'] ?>">
+
+										<span data-bs-toggle="tooltip" data-bs-placement="right" title="View">
+
+											<img src="./assets/icons/View.svg" width="25" height="25">
+
+										</span>
+
+									</span>
+
+									<span data-bs-toggle="modal"data-bs-target="#studentEditModal-<?php echo $data['student_id'] ?>">
+
+										<span data-bs-toggle="tooltip" data-bs-placement="right" title="Edit">
+
+											<img src="./assets/icons/Edit.svg" width="25" height="25">
+
+										</span>
+
+									</span>
+
+									<span data-bs-toggle="modal"data-bs-target="#studentDeleteModal-<?php echo $data['student_id'] ?>">
+
+										<span data-bs-toggle="tooltip" data-bs-placement="right" title="Delete">
+
+											<img src="./assets/icons/Delete.svg" width="25" height="25">
+
+										</span>
+
+									</span>
 
 								</td>
 								
@@ -279,7 +331,7 @@
 	 				 					
 	 				 				<li>
 	 				 				 	
-	 				 				 	<a class="page-link" href="Dashboard.php?page=<?php echo $page-1 ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : '';?>">Previous</a>
+	 				 				 	<a class="page-link" href="Dashboard.php?page=<?php echo $page-1 ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : ''; echo (isset($_GET['fees_status']) && !empty($_GET['fees_status'])) ? '&fees_status='.$_GET['fees_status'] : '';?>">Previous</a>
 
 	 				 				</li>		
 
@@ -293,7 +345,7 @@
 	 				 				
 	 				 				<li class="page-item <?php echo $page == $i ? 'active aria-current="page" ' : ''; ?>">
 
-	 				 					<a class="page-link" href="Dashboard.php?page=<?php echo $i ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : '';?>">
+	 				 					<a class="page-link" href="Dashboard.php?page=<?php echo $i ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : ''; echo (isset($_GET['fees_status']) && !empty($_GET['fees_status'])) ? '&fees_status='.$_GET['fees_status'] : '';?>">
 
 	 				 							<?php echo $i; ?>
 
@@ -309,7 +361,7 @@
 	 									
 	 								<li>
 	 								 	
-	 								 	<a class="page-link" href="Dashboard.php?page=<?php echo $page+1 ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : '';?>">Next</a>
+	 								 	<a class="page-link" href="Dashboard.php?page=<?php echo $page+1 ; echo (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) ? '&search='.$_REQUEST['search'] : ''; echo (isset($_GET['fees_status']) && !empty($_GET['fees_status'])) ? '&fees_status='.$_GET['fees_status'] : '';?>">Next</a>
 
 	 								</li>		
 

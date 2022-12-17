@@ -273,32 +273,6 @@
 	 
 	</body>
 	</html>
-
-	<script type="text/javascript">
-		
-		function fliterByFeesStatus(feesStatus){
-
-			var feesStatus = feesStatus;
-
-			var xmlhttp = new XMLHttpRequest();
-
-			xmlhttp.onreadystatechange = function(){
-
-				if (this.readyState == 4 && this.status == 200) {
-
-					window.location.reload();
-
-				}
-
-			};
-
-			xmlhttp.open("GET", "Fees.php?fees_status=" + feesStatus, true);
-			xmlhttp.send();
-
-		}
-
-	</script>
-
 	
 <?php 
 
