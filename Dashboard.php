@@ -104,7 +104,7 @@
 				
 				<div class="col-md-6">
 
-						<a href="Students.php" class="text-decoration-none" style="color: #ffffff;">
+						<a href="Students.php" class="text-decoration-none" style="color: #000000;">
 
 							<div class="card h-100">
 
@@ -126,7 +126,7 @@
 
 				<div class="col-md-6">
 
-					<a href="Fees.php" class="text-decoration-none" style="color: #ffffff;">
+					<a href="Fees.php" class="text-decoration-none" style="color: #000000;">
 						
 						<div class="card h-100">
 
@@ -137,10 +137,18 @@
 								<img src="./assets/icons/Fees.svg" class="card-img-top mt-2" width="75" height="75">
 
 								<div class="d-flex justify-content-between mt-3">
-									
-									<span class="card-text fs-5"> Paid : <span> <?php echo $data['paid_students']; ?> </span></span>
 
-									<span class="card-text fs-5" style="background-color: red;"> Not Paid : <span> <?php echo $data['not_paid_students']; ?> </span></span>
+									<div style="background-color: #0fc10fb3; border-radius: 20px; padding: 5px 50px;">
+										
+										<span class="card-text fs-5"> Paid : <span> <?php echo $data['paid_students']; ?> </span></span>
+
+									</div>
+
+									<div style="background-color: #f30000ad; border-radius: 20px; padding: 5px 30px;">		
+										
+										<span class="card-text fs-5"> Not Paid : <span> <?php echo $data['not_paid_students']; ?> </span></span>
+
+									</div>
 
 								</div>
 
