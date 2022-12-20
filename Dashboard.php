@@ -138,13 +138,13 @@
 
 								<div class="d-flex justify-content-between mt-3">
 
-									<div style="background-color: #0fc10fb3; border-radius: 20px; padding: 5px 50px;">
+									<div style="background-color: #0fc10fb3; border-radius: 20px; padding: 5px 50px; box-shadow: 5px 5px;">
 										
 										<span class="card-text fs-5"> Paid : <span> <?php echo $data['paid_students']; ?> </span></span>
 
 									</div>
 
-									<div style="background-color: #f30000ad; border-radius: 20px; padding: 5px 30px;">		
+									<div style="background-color: #f30000ad; border-radius: 20px; padding: 5px 30px; box-shadow: 5px 5px;">		
 										
 										<span class="card-text fs-5"> Not Paid : <span> <?php echo $data['not_paid_students']; ?> </span></span>
 
