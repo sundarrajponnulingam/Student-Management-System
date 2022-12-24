@@ -10,7 +10,7 @@
 		$parent_id = $_POST['parent_id'];
 		$student_name = trim($_POST['student_name']);
 		$student_class = trim($_POST['student_class']);
-		$student_section = trim($_POST['student_section']);
+		$student_section = strtoupper(trim($_POST['student_section']));
 		$student_date_of_birth = trim($_POST['student_date_of_birth']);
 		$student_father_name = trim($_POST['student_father_name']);
 		$student_mother_name = trim($_POST['student_mother_name']);
