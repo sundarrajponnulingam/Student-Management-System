@@ -29,6 +29,8 @@
 
 				<a href="Parents.php" class="list-group-item action <?php echo $page_variable == 'Parents' ? 'active' : '';?>" aria-current="true">Parents</a>
 
+				<a href="Logout_action.php" class="list-group-item action" aria-current="true">Logout</a>
+
 			</div>
 
 		</div>	
