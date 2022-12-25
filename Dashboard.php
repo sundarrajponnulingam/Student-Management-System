@@ -104,7 +104,7 @@
 				
 				<div class="col-md-6">
 
-						<a href="Students.php" class="text-decoration-none" style="color: #000000;">
+						<a href="Students.php" class="text-decoration-none" style="color: #000000;" data-bs-toggle="tooltip" data-bs-placement="top" title="Go to Students List Page">
 
 							<div class="card h-100">
 
@@ -126,7 +126,7 @@
 
 				<div class="col-md-6">
 
-					<a href="Fees.php" class="text-decoration-none" style="color: #000000;">
+					<a href="Fees.php" class="text-decoration-none" style="color: #000000;" data-bs-toggle="tooltip" data-bs-placement="top" title="Go to Fees Status List Page">
 						
 						<div class="card h-100">
 
