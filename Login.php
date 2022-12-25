@@ -26,7 +26,7 @@
 
 					<?php if (isset($_GET['message']) && !empty($_GET['message'])) { ?>
 
-						<div class="alert alert-danger">
+						<div class="alert alert-danger" id="message">
 							
 							<strong> <?php print_r($_GET['message']); ?> </strong>
 
@@ -82,4 +82,14 @@
 
 	</body>
 	</html>
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+
+		$('.alert').fadeOut(5000);
+
+	});
+
+</script>
 

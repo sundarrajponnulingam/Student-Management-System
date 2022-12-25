@@ -94,3 +94,13 @@
 
 </body>
 </html>
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+
+		$('.alert').fadeOut(5000);
+
+	});
+
+</script>
