@@ -4,7 +4,7 @@
 
  ?>
 
-<div class="offcanvas offcanvas-start" data-bs-backdrop="false" data-bs-scroll="true" data-bs-keyboard="true" id="menu" aria-labelledby="menuLabel" tabindex="-1">
+<div class="offcanvas offcanvas-start" data-bs-backdrop="true" id="menu" aria-labelledby="menuLabel" tabindex="-1">
 
 	<div class="offcanvas-header">
 
@@ -19,7 +19,7 @@
 		<div class="row">
 
 			<div class="list-group">
-				
+			
 				<a href="Dashboard.php" class="list-group-item action <?php echo $page_variable == 'Dashboard' ? 'active' : '';?>" aria-current="true">Dashboard
 				</a>
 
@@ -970,34 +970,6 @@
 		var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 		  return new bootstrap.Tooltip(tooltipTriggerEl)
 		})
-
-	});
-
-</script>
-
-<script type="text/javascript">
-	
-	$(document).ready(function(){
-
-		$(".list-group-item").click(function(){
-
-			$('.offcanvas').hide();
-
-		});
-
-	});
-
-</script>
-
-<script type="text/javascript">
-	
-	$(document).ready(function(){
-
-		$("#menuBars").click(function(){
-
-			$('.offcanvas').show();
-
-		});
 
 	});
 

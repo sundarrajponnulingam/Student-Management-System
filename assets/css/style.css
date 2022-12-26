@@ -11,7 +11,23 @@
 
 }
 
-.dashboard .card{
+.login .card{
+
+	width: 70%;
+	margin: 170px;
+	border-radius: 25px;
+
+}
+
+.signup .card{
+
+	width: 70%;
+	margin: 150px 170px;
+	border-radius: 25px;
+
+}
+
+.dashboard .card, .offcanvas-header, .offcanvas-body{
 
 	background-color: #80808040;
 
@@ -27,6 +43,12 @@ nav{
 
     box-shadow: none;
     
+}
+
+.list-group{
+
+	padding-left: 12px;
+
 }
 
 .list-group-item{

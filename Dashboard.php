@@ -170,7 +170,7 @@
 						
 						<div class="d-flex justify-content-between">
 						
-							<input type="text" class="form-control" name="search" id="search_text" placeholder="Search Here">
+							<input type="text" class="form-control" name="search" id="search_text" placeholder="Search">
 
 							<button type="submit" class="btn btn-light" id="search">
 
